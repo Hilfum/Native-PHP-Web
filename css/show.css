@@ -1,0 +1,968 @@
+body.show-body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header & logo */
+.header {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #007bff; /* Warna biru untuk header */
+    color: white;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.header img {
+    height: 50px; /* Ukuran logo diperkecil */
+    margin-right: 10px;
+}
+
+.header h2 {
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
+}
+
+.logout-button {
+    background-color: #ff4d4d;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.logout-button:hover {
+    background-color: #cc0000;
+}
+
+.content {
+    margin-top: 80px; /* Menambahkan margin-top untuk menghindari header */
+    padding: 20px;
+}
+
+.back-button {
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-right: auto; /* Push to left edge */
+}
+
+.back-button:hover {
+    background-color: #0056b3;
+}
+
+h2 {
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    max-width: 1600px; /* Memperbesar lebar maksimal tabel */
+    margin: 0 auto; /* Remove top margin */
+    border-collapse: collapse;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+    vertical-align: middle; /* Menambahkan ini untuk alignment vertikal */
+}
+
+td {
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+    text-align: center; /* Mengatur teks pada label kolom agar berada di tengah */
+}
+
+td.nama-wajib-pajak {
+    width: 300px; /* Memperbesar lebar kolom Nama Wajib Pajak */
+}
+
+td.alamat-wajib-pajak, td.alamat-objek-pajak {
+    width: 400px; /* Memperbesar lebar kolom */
+}
+
+td.kelurahan-objek-pajak, td.kecamatan-objek-pajak {
+    width: 300px; /* Memperbesar lebar kolom */
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.action-buttons a, .action-buttons form {
+    display: inline-block;
+}
+
+.action-buttons button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.action-buttons .delete {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+.action-buttons .delete:hover {
+    background-color: #cc0000;
+}
+
+.action-buttons .confirm {
+    background-color: #28a745;
+    color: white;
+}
+
+.action-buttons .confirm:hover {
+    background-color: #218838;
+}
+
+/* Status colors */
+.status-pending, .status-selesai, .status-proses, .status-ditolak {
+    display: inline-block;
+    font-weight: bold;
+    text-align: center;
+    padding: 6px 16px;
+    border-radius: 20px;
+    min-width: 100px;
+    margin: 5px auto; /* Mengubah margin agar centered */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+td.status-cell { /* Tambahkan class ini ke cell yang berisi status */
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.status-pending {
+    display: inline-block;
+    background-color: #ffc107;
+    color: #5a3b00;
+    font-weight: bold;
+    text-align: center;
+    padding: 6px 16px;
+    border-radius: 20px;
+    min-width: 100px;
+    margin: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.status-selesai {
+    background: #28a745;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.status-proses {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding: 6px 16px;
+    border-radius: 20px;
+    min-width: 100px;
+    margin: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.status-ditolak {
+    display: inline-block;
+    background-color: #dc3545;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding: 6px 16px;
+    border-radius: 20px;
+    min-width: 100px;
+    margin: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.status-sampai {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.tipe-berkas {
+    width: 200px;
+    white-space: pre-line; /* Mengizinkan line break */
+    text-align: center;
+    padding: 10px;
+}
+
+/* Search container and table styles */
+.search-container {
+    width: 100%;
+    margin: 15px 0;
+    overflow: visible;
+}
+
+/* Clean up and simplify search table styles */
+.search-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.search-table td {
+    padding: 2px 4px;
+    min-width: 120px;
+}
+.search-table input[type="text"],
+.search-table select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px 8px;
+    font-size: 1em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Column widths for search inputs to match table */
+.search-table td:nth-child(1) { /* Tanggal */
+    width: 35px;
+}
+
+.search-table td:nth-child(2) { /* Bulan */
+    width: 60px;
+}
+
+.search-table td:nth-child(3) { /* Tahun */
+    width: 45px;
+}
+
+.search-table td:nth-child(4) { /* Nama */
+    width: 100px;
+}
+
+.search-table td:nth-child(5) { /* NOP */
+    width: 100px;
+}
+
+.search-table td:nth-child(6) { /* Kelurahan */
+    width: 90px;
+}
+
+.search-table td:nth-child(7) { /* Kecamatan */
+    width: 90px;
+}
+
+.search-table td:nth-child(8) { /* Alamat WP */
+    width: 100px;
+}
+
+.search-table td:nth-child(9) { /* Alamat OP */
+    width: 100px;
+}
+
+.search-table td:nth-child(10) { /* Tipe Berkas */
+    width: 80px;
+}
+
+.search-table td:nth-child(11) { /* Status */
+    width: 80px;
+}
+
+.search-table td:last-child { /* Button */
+    width: 50px;
+}
+
+/* Input and select styles */
+.search-table input[type="text"],
+.search-table select.date-select {
+    width: 100%;
+    padding: 4px 6px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    box-sizing: border-box;
+    height: 26px;
+    font-size: 12px;
+}
+
+/* Specific styles for date selects */
+select[name="search_date_start"] {
+    width: 100%;
+}
+
+select[name="search_month"] {
+    width: 100%;
+}
+
+select[name="search_year"] {
+    width: 100%;
+}
+
+/* Button style */
+.search-table button {
+    width: 100%;
+    padding: 4px;
+    height: 26px;
+    font-size: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* Spacing */
+.search-table td {
+    padding: 2px;
+}
+
+.search-table input[type="date"] {
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 140px;
+}
+
+.search-table button {
+    width: 100%;
+    padding: 8px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.search-table button:hover {
+    background-color: #0056b3;
+}
+
+/* Match widths with table columns */
+.search-table td:nth-child(1) { /* Date */
+    width: 85px;
+}
+
+.search-table td:nth-child(2) { /* Month */
+    width: 100px;
+}
+
+.search-table td:nth-child(3) { /* Year */
+    width: 85px;
+}
+
+.search-table td:nth-child(4) { /* Nama */
+    width: 150px;
+}
+
+.search-table td:nth-child(5) { /* NOP */
+    width: 150px;
+}
+
+.search-table td:nth-child(6), 
+.search-table td:nth-child(7) { /* Kelurahan & Kecamatan */
+    width: 130px;
+}
+
+.search-table td:nth-child(8), 
+.search-table td:nth-child(9) { /* Alamat WP & OP */
+    width: 150px;
+}
+
+.search-table td:nth-child(10) { /* Tipe Berkas */
+    width: 120px;
+}
+
+.search-table td:nth-child(11) { /* Status */
+    width: 120px;
+}
+
+.search-table td:last-child { /* Button column */
+    width: 80px;
+}
+
+/* Specific widths for date selects */
+select[name="search_date_start"] {
+    width: 70px;
+}
+
+select[name="search_month"] {
+    width: 90px;
+}
+
+select[name="search_year"] {
+    width: 75px;
+}
+
+/* Add some spacing between columns */
+.search-table td {
+    padding: 5px 8px;
+}
+
+/* Remove conflicting minimum widths */
+.search-table input[type="date"],
+.search-table select.date-select {
+    min-width: unset;
+    margin-right: 0;
+}
+
+.search-table input[type="text"] {
+    min-width: unset;
+    width: 100%;
+}
+
+/* Match widths with table columns */
+.search-table td:nth-child(1) { /* Nama Wajib Pajak */
+    width: 115px;
+}
+
+.search-table td:nth-child(2) { /* NOP */
+    width: 150px;
+}
+
+.search-table td:nth-child(3), 
+.search-table td:nth-child(4) { /* Kelurahan & Kecamatan */
+    width: 120px;
+}
+
+.search-table td:nth-child(5), 
+.search-table td:nth-child(6) { /* Alamat WP & OP */
+    width: 130px;
+}
+
+.search-table td:nth-child(7) { /* Tipe Berkas */
+    width: 100px;
+}
+
+.search-table td:nth-child(8) { /* Status */
+    width: 110px;
+}
+
+.search-table td:last-child { /* Button column */
+    width: 150px;
+}
+
+.entries-container {
+    display: flex;
+    align-items: center;
+    margin: 0; /* Remove default margins */
+    margin-left: auto; /* Push to right edge */
+}
+
+.entries-container select {
+    margin: 0 5px;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.pagination-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+}
+
+.pagination a.page-link {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    color: #333;
+    border-radius: 4px;
+}
+
+.pagination a.page-link:hover {
+    background-color: #f5f5f5;
+}
+
+.pagination a.page-link.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+/* Style for First/Previous links */
+.pagination a.page-link:nth-child(-n+2) {
+    margin-right: 10px;
+}
+
+/* Style for Next/Last links */
+.pagination a.page-link:nth-last-child(-n+2) {
+    margin-left: 10px;
+}
+
+.pagination-info {
+    color: #666;
+    text-align: center;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 0;
+}
+
+.table-actions {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.table-container {
+    width: 95%;
+    max-width: 1600px; /* Match table's max-width */
+    margin: 0 auto;
+    padding: 20px;
+    overflow-x: auto;
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 15px; /* Reduced spacing between header and table */
+    padding: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+/* Alternating row colors */
+table tbody tr:nth-child(even) {
+    background-color: #fff;
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: #f0f7ff;  /* Light blue color */
+}
+
+/* Hover effect for better UX */
+table tbody tr:hover {
+    background-color: #e6f0fa;
+    transition: background-color 0.2s ease;
+}
+
+/* Ensure text remains readable */
+table tbody td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Keep header distinct */
+table thead tr {
+    background-color: #fff;
+    border-bottom: 2px solid #ddd;
+}
+
+.tanggal-masuk {
+    white-space: nowrap;
+    text-align: center;
+    min-width: 130px;
+    background-color: inherit; /* To maintain row color alternation */
+}
+
+/* Specific widths for date selects */
+select[name="search_date_start"] {
+    width: 70px; /* Reduced from 80px */
+}
+
+select[name="search_month"] {
+    width: 90px; /* Reduced from 100px */
+}
+
+select[name="search_year"] {
+    width: 75px; /* Reduced from 85px */
+}
+
+/* Update the general date select class */
+.date-select {
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 70px; /* Reduced from 90px */
+}
+
+/* Remove conflicting styles */
+.search-table input[type="date"],
+.search-table select.date-select {
+    min-width: unset; /* Remove minimum width constraint */
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+.search-table select,
+.search-table input[type="date"] {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Keep other search inputs wider */
+.search-table input[type="text"] {
+    min-width: 150px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.search-table input[type="date"],
+.search-table select.date-select {
+    min-width: 130px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+.search-table input[type="text"] {
+    min-width: 150px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.search-table button {
+    padding: 5px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.search-table button:hover {
+    background-color: #45a049;
+}
+
+/* Common table styles */
+.search-table,
+table {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+/* Column widths for both search and data tables */
+.search-table td:nth-child(1),
+table th:nth-child(1),
+table td:nth-child(1) { /* Tanggal */
+    width: 65px;
+}
+
+.search-table td:nth-child(2),
+table th:nth-child(2),
+table th:nth-child(2){ /* Bulan */
+    width: 85px;
+}
+
+.search-table td:nth-child(3),
+table th:nth-child(3),
+table td:nth-child(3) { /* Tahun */
+    width: 65px;
+}
+
+.search-table td:nth-child(4),
+table th:nth-child(4),
+table td:nth-child(4) { /* Nama */
+    width: 150px;
+}
+
+.search-table td:nth-child(5),
+table th:nth-child(5),
+table td:nth-child(5) { /* NOP */
+    width: 150px;
+}
+
+.search-table td:nth-child(6),
+table th:nth-child(6),
+table td:nth-child(6) { /* Kelurahan */
+    width: 150px;
+}
+
+.search-table td:nth-child(7),
+table th:nth-child(7),
+table td:nth-child(7) { /* Kecamatan */
+    width: 100px;
+}
+
+.search-table td:nth-child(8),
+table th:nth-child(8),
+table td:nth-child(8) { /* Alamat WP */
+    width: 100px;
+}
+
+.search-table td:nth-child(9),
+table th:nth-child(9),
+table td:nth-child(9) { /* Alamat OP */
+    width: 100px;
+}
+
+.search-table td:nth-child(10),
+table th:nth-child(10),
+table td:nth-child(10) { /* Tipe Berkas */
+    width: 130px;
+}
+
+.search-table td:nth-child(11),
+table th:nth-child(11),
+table td:nth-child(11) { /* Status */
+    width: 130px;
+}
+
+/* Search inputs styling */
+.search-table select[name="search_date_start"] {
+    width: 65px;
+}
+
+.search-table select[name="search_month"] {
+    width: 85px;
+}
+
+.search-table select[name="search_year"] {
+    width: 65px;
+}
+
+.search-table input[type="text"] {
+    width: 90%;
+    min-width: unset;
+}
+
+/* Spacing and padding */
+.search-table td {
+    padding: 5px;
+}
+
+table th,
+table td {
+    padding: 8px;
+    text-align: left;
+}
+
+/* Remove any conflicting styles */
+.search-table input[type="date"],
+.search-table select.date-select {
+    min-width: unset;
+    margin-right: 0;
+}
+
+/* Hamburger menu styles */
+.hamburger-menu-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+.hamburger-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+    gap: 5px;
+}
+.hamburger-icon span {
+    display: block;
+    height: 4px;
+    width: 100%;
+    background: #333;
+    border-radius: 2px;
+    transition: 0.3s;
+}
+.hamburger-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 40px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    min-width: 180px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    z-index: 100;
+    padding: 12px 16px;
+}
+.hamburger-dropdown .user-info {
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 1em;
+}
+.hamburger-dropdown .logout-button {
+    color: #222 !important;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+    margin-top: 5px;
+}
+.hamburger-menu-container.active .hamburger-dropdown {
+    display: block;
+}
+@media (max-width: 600px) {
+    .header h2 { font-size: 1.1em; }
+    .hamburger-dropdown { min-width: 140px; font-size: 0.95em; }
+}
+
+/* css/show.css */
+.search-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+.search-table td {
+    padding: 2px 4px;
+}
+.search-table input[type="text"],
+.search-table select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px 8px;
+    font-size: 1em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    min-width: 90px;
+}
+.search-table button[type="submit"] {
+    padding: 7px 16px;
+    font-size: 1em;
+    border-radius: 5px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+.search-table button[type="submit"]:hover {
+    background: #0056b3;
+}
+@media (max-width: 900px) {
+    .search-table input[type="text"],
+    .search-table select {
+        font-size: 0.95em;
+        padding: 5px 6px;
+    }
+}
+
+/* Perbesar tombol Cari dan sejajarkan dengan filter */
+.search-btn-cell {
+    vertical-align: top;
+    text-align: right;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 100%;
+}
+.search-btn-big {
+    width: 100%;
+    height: 100%;
+    min-height: 70px; /* Sesuaikan dengan tinggi dua baris filter */
+    font-size: 1.2em;
+    font-weight: bold;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background 0.2s;
+    box-sizing: border-box;
+}
+.search-btn-big:hover {
+    background: #0056b3;
+}
+
+.btn-edit {
+    background: #ffc107;
+    color: #222;
+    padding: 5px 12px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 4px;
+    transition: background 0.2s;
+}
+.btn-edit:hover { background: #e0a800; color: #fff; }
+
+.btn-delete {
+    background: #e74c3c;
+    color: #fff;
+    padding: 5px 12px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 4px;
+    transition: background 0.2s;
+}
+.btn-delete:hover { background: #c0392b; }
+
+.btn-confirm {
+    background: #28a745;
+    color: #fff;
+    padding: 5px 12px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.btn-confirm:hover { background: #218838; }
+
+.btn-edit,
+.btn-delete,
+.btn-confirm {
+    margin-right: 6px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.btn-confirm {
+    margin-right: 0; /* Biar tombol terakhir tidak ada jarak kanan */
+}

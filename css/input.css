@@ -1,0 +1,231 @@
+body.input-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    padding-top: 80px;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+/* Header & logo */
+.header {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.header img {
+    height: 50px;
+    margin-right: 10px;
+}
+
+.header h2 {
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
+}
+
+.logout-button {
+    background-color: #ff4d4d;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.container-input {
+    width: 100%;
+    max-width: 600px;
+    padding: 30px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 10px;
+    margin: 20px auto;
+    box-sizing: border-box;
+}
+
+.container-input h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 1.8em;
+}
+
+.container-input label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: normal;
+}
+
+.container-input input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.checkbox-group {
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.checkbox-group label {
+    display: block;
+    margin: 8px 0;
+    font-weight: normal;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+button[type="submit"],
+.button-secondary-input {
+    min-width: 120px;
+    padding: 12px 25px;
+    background-color: #0088ff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1em;
+    cursor: pointer;
+}
+
+.button-secondary-input {
+    display: inline-block;
+    background-color: #6c757d;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1em;
+    cursor: pointer;
+    min-width: 120px;
+}
+
+.button-secondary-input:hover {
+    background-color: #5a6268;
+}
+
+button[type="submit"]:hover {
+    background-color: #0066cc;
+}
+
+.input-date-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.input-date-group .calendar-icon {
+    font-size: 1.5em;
+    margin-right: 8px;
+    color: #3498db;
+}
+.input-date-group input[type="date"] {
+    padding: 8px 12px;
+    font-size: 1.1em;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    transition: border-color 0.2s;
+}
+.input-date-group input[type="date"]:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+/* Hamburger menu styles */
+.hamburger-menu-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+.hamburger-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+    gap: 5px;
+}
+.hamburger-icon span {
+    display: block;
+    height: 4px;
+    width: 100%;
+    background: #333;
+    border-radius: 2px;
+    transition: 0.3s;
+}
+.hamburger-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 40px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    min-width: 180px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    z-index: 100;
+    padding: 12px 16px;
+}
+.hamburger-dropdown .user-info {
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 1em;
+}
+.hamburger-dropdown .logout-button {
+    color: #222 !important;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+    margin-top: 5px;
+}
+.hamburger-menu-container.active .hamburger-dropdown {
+    display: block;
+}
+@media (max-width: 600px) {
+    .header h2 { font-size: 1.1em; }
+    .hamburger-dropdown { min-width: 140px; font-size: 0.95em; }
+}
+
+@media screen and (max-width: 768px) {
+    body.input-body {
+        padding-top: 100px;
+    }
+
+    .container-input {
+        margin: 10px;
+        padding: 20px;
+    }
+}
