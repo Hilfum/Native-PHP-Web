@@ -186,7 +186,7 @@ if (!$result) {
                     <table class="search-table">
                         <tr>
                             <td style="width:170px;">
-                                <select name="search_date_start" class="date-select" style="width:100px;">
+                                <select name="search_date_start" class="date-select" style="width:110px;">
                                     <option value="">Tanggal</option>
                                     <?php for ($day = 1; $day <= 31; $day++): 
                                         $day_padded = str_pad($day, 2, '0', STR_PAD_LEFT);
@@ -194,7 +194,7 @@ if (!$result) {
                                         echo "<option value='$day_padded' $selected>$day_padded</option>";
                                     endfor; ?>
                                 </select>
-                                <select name="search_month" class="date-select" style="width:133px;">
+                                <select name="search_month" class="date-select" style="width:120px;">
                                     <option value="">Bulan</option>
                                     <?php
                                     $months = [
@@ -290,7 +290,7 @@ if (!$result) {
                         <th class="tipe-berkas">Tipe Berkas</th>
                         <th>Status Berkas</th>
                         <?php if ($_SESSION['role'] === 'monitoring'): ?>
-                            <th>Current Handler</th>
+                            <th>Handler</th>
                         <?php else: ?>
                             <th>Action</th>
                         <?php endif; ?>
