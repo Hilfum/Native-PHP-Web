@@ -14,6 +14,20 @@ function formatNOP($nop)
         substr($nop, 17, 1);
 }
 
+function keterangan_handler($handler) {
+    $map = [
+        'verlap'   => 'Verifikasi Lapangan',
+        'mutasi1'  => 'Mutasi Bagian',
+        'mutasi2'  => 'Mutasi Nama dan Pembetulan',
+        'kabid'    => 'Kepala Bidang',
+        'loket'    => 'Petugas Loket',
+        'bphtb'    => 'BPHTB',
+        'op_baru'  => 'Objek Pajak Baru',
+        'penetapan'=> 'Penetapan'
+    ];
+    return $map[$handler] ?? $handler;
+}
+
 // Replace the existing query with this
 $query = "SELECT id, nama, nop, kelurahan_objek_pajak, kecamatan_objek_pajak, 
           alamat_wajib_pajak, alamat_objek_pajak, tipe_berkas, status, tanggal_masuk, current_handler 
@@ -331,7 +345,11 @@ if (!$result) {
                             </td>
                             <?php if ($_SESSION['role'] === 'monitoring'): ?>
                                 <td>
-                                    <?php echo isset($row['current_handler']) ? htmlspecialchars($row['current_handler']) : '-'; ?>
+                                    <?php
+                                    echo isset($row['current_handler']) && $row['current_handler']
+                                        ? htmlspecialchars(keterangan_handler($row['current_handler']))
+                                        : '-';
+                                    ?>
                                 </td>
                             <?php else: ?>
                                 <td>
