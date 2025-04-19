@@ -185,18 +185,17 @@ if (!$result) {
                 <form action="" method="GET">
                     <table class="search-table">
                         <tr>
-                            <!-- Gabungan Tgl/Bln/Thn -->
-                            <td style="min-width:170px;">
-                                <select name="search_date_start" class="date-select" style="width:30%;">
-                                    <option value="">Tgl</option>
+                            <td style="width:170px;">
+                                <select name="search_date_start" class="date-select" style="width:100px;">
+                                    <option value="">Tanggal</option>
                                     <?php for ($day = 1; $day <= 31; $day++): 
                                         $day_padded = str_pad($day, 2, '0', STR_PAD_LEFT);
                                         $selected = (isset($_GET['search_date_start']) && $_GET['search_date_start'] == $day_padded) ? 'selected' : '';
                                         echo "<option value='$day_padded' $selected>$day_padded</option>";
                                     endfor; ?>
                                 </select>
-                                <select name="search_month" class="date-select" style="width:38%;">
-                                    <option value="">Bln</option>
+                                <select name="search_month" class="date-select" style="width:133px;">
+                                    <option value="">Bulan</option>
                                     <?php
                                     $months = [
                                         '01' => 'Januari', '02' => 'Februari', '03' => 'Maret', '04' => 'April',
@@ -209,8 +208,8 @@ if (!$result) {
                                     }
                                     ?>
                                 </select>
-                                <select name="search_year" class="date-select" style="width:28%;">
-                                    <option value="">Thn</option>
+                                <select name="search_year" class="date-select" style="width:100px;">
+                                    <option value="">Tahun</option>
                                     <?php
                                     $current_year = date('Y');
                                     for ($year = $current_year; $year >= 2020; $year--) {
@@ -220,18 +219,30 @@ if (!$result) {
                                     ?>
                                 </select>
                             </td>
-                            <td><input type="text" name="search_nama" placeholder="Cari Nama..." value="<?php echo isset($_GET['search_nama']) ? htmlspecialchars($_GET['search_nama']) : ''; ?>"></td>
-                            <td><input type="text" name="search_nop" placeholder="Cari NOP..." value="<?php echo isset($_GET['search_nop']) ? htmlspecialchars($_GET['search_nop']) : ''; ?>"></td>
-                            <td><input type="text" name="search_kelurahan" placeholder="Cari Kelurahan..." value="<?php echo isset($_GET['search_kelurahan']) ? htmlspecialchars($_GET['search_kelurahan']) : ''; ?>"></td>
-                            <td><input type="text" name="search_kecamatan" placeholder="Cari Kecamatan..." value="<?php echo isset($_GET['search_kecamatan']) ? htmlspecialchars($_GET['search_kecamatan']) : ''; ?>"></td>
-                            <td><input type="text" name="search_alamat_wp" placeholder="Cari Alamat WP..." value="<?php echo isset($_GET['search_alamat_wp']) ? htmlspecialchars($_GET['search_alamat_wp']) : ''; ?>"></td>
-                            <td rowspan="2" class="search-btn-cell">
-                                <button type="submit" class="search-btn-big">Cari</button>
+                            <td style="width:140px;">
+                                <input type="text" name="search_nama" placeholder="Cari Nama..." value="<?php echo isset($_GET['search_nama']) ? htmlspecialchars($_GET['search_nama']) : ''; ?>">
+                            </td>
+                            <td style="width:120px;">
+                                <input type="text" name="search_nop" placeholder="Cari NOP..." value="<?php echo isset($_GET['search_nop']) ? htmlspecialchars($_GET['search_nop']) : ''; ?>">
+                            </td>
+                            <td style="width:120px;">
+                                <input type="text" name="search_kelurahan" placeholder="Cari Kelurahan..." value="<?php echo isset($_GET['search_kelurahan']) ? htmlspecialchars($_GET['search_kelurahan']) : ''; ?>">
+                            </td>
+                            <td style="width:120px;">
+                                <input type="text" name="search_kecamatan" placeholder="Cari Kecamatan..." value="<?php echo isset($_GET['search_kecamatan']) ? htmlspecialchars($_GET['search_kecamatan']) : ''; ?>">
+                            </td>
+                            <td rowspan="2" style="vertical-align:top;width:90px;">
+                                <button type="submit" class="search-btn-big" style="height:100%;">Cari</button>
                             </td>
                         </tr>
                         <tr>
-                            <td><input type="text" name="search_alamat_op" placeholder="Cari Alamat OP..." value="<?php echo isset($_GET['search_alamat_op']) ? htmlspecialchars($_GET['search_alamat_op']) : ''; ?>"></td>
-                            <td>
+                            <td style="width:170px;">
+                                <input type="text" name="search_alamat_wp" placeholder="Cari Alamat WP..." value="<?php echo isset($_GET['search_alamat_wp']) ? htmlspecialchars($_GET['search_alamat_wp']) : ''; ?>">
+                            </td>
+                            <td style="width:140px;">
+                                <input type="text" name="search_alamat_op" placeholder="Cari Alamat OP..." value="<?php echo isset($_GET['search_alamat_op']) ? htmlspecialchars($_GET['search_alamat_op']) : ''; ?>">
+                            </td>
+                            <td style="width:120px;">
                                 <select name="search_tipe" style="width:100%;">
                                     <option value="">Tipe Berkas...</option>
                                     <option value="BPHTB" <?php echo (isset($_GET['search_tipe']) && $_GET['search_tipe'] == 'BPHTB') ? 'selected' : ''; ?>>BPHTB</option>
@@ -240,7 +251,7 @@ if (!$result) {
                                     <option value="Mutasi Nama & Pembetulan" <?php echo (isset($_GET['search_tipe']) && $_GET['search_tipe'] == 'Mutasi Nama & Pembetulan') ? 'selected' : ''; ?>>Mutasi Nama & Pembetulan</option>
                                 </select>
                             </td>
-                            <td>
+                            <td style="width:120px;">
                                 <select name="search_status" style="width:100%;">
                                     <option value="">Status...</option>
                                     <option value="Pending" <?php echo (isset($_GET['search_status']) && $_GET['search_status'] == 'Pending') ? 'selected' : ''; ?>>Pending</option>
@@ -248,7 +259,7 @@ if (!$result) {
                                 </select>
                             </td>
                             <?php if ($_SESSION['role'] === 'monitoring'): ?>
-                            <td colspan="3">
+                            <td style="width:120px;">
                                 <select name="search_handler" style="width:100%;">
                                     <option value="">Handler</option>
                                     <?php
@@ -260,8 +271,6 @@ if (!$result) {
                                     ?>
                                 </select>
                             </td>
-                            <?php else: ?>
-                            <td></td><td></td><td></td>
                             <?php endif; ?>
                         </tr>
                     </table>

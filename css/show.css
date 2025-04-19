@@ -852,6 +852,7 @@ table td {
 
 /* css/show.css */
 .search-table {
+    table-layout: fixed;
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 10px;
@@ -965,4 +966,11 @@ table td {
 
 .btn-confirm {
     margin-right: 0; /* Biar tombol terakhir tidak ada jarak kanan */
+}
+
+.date-select,
+.search-table select,
+.search-table input[type="text"] {
+    height: 36px;
+    box-sizing: border-box;
 }
