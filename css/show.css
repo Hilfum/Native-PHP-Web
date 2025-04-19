@@ -116,6 +116,16 @@ h2 {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 10px;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.search-table tr,
+.search-table td {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
 }
 
 .search-table td {
