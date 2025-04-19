@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 15 Apr 2025 pada 02.29
+-- Waktu pembuatan: 19 Apr 2025 pada 06.01
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -48,10 +48,9 @@ CREATE TABLE `dokumen` (
 --
 
 INSERT INTO `dokumen` (`id`, `nama_dokumen`, `penerima`, `nama`, `nop`, `kelurahan_objek_pajak`, `kecamatan_objek_pajak`, `alamat_wajib_pajak`, `alamat_objek_pajak`, `tipe_berkas`, `status`, `tanggal_masuk`, `current_handler`) VALUES
-(2, '', NULL, 'muflih', '124173256786329826', 'kadia', 'kadia', 'perdos', 'perdos', 'BPHTB', 'pending', '0000-00-00 00:00:00', 'loket'),
-(3, '', NULL, 'yayak', '356946783684715734', 'lippo', 'lipppo', 'lippo', 'lippo', 'Objek Pajak Baru', 'pending', '0000-00-00 00:00:00', 'loket'),
-(4, '', NULL, 'bir', '318658658963956498', 'mengapa', 'mengapa', 'mengapa', 'mengapa', 'Mutasi Bagian', 'pending', '0000-00-00 00:00:00', 'loket'),
-(5, '', NULL, 'cikong', '813259817429864386', 'rumha', 'rumah', 'rumah', 'rumah', 'Mutasi Nama & Pembetulan', 'pending', '0000-00-00 00:00:00', 'loket');
+(36, '', NULL, '1', '111111111111111111', '1', '1', '1', '1', 'BPHTB, Objek Pajak Baru, Mutasi Bagian, Mutasi Nama & Pembetulan', 'selesai', '0001-01-01 00:00:00', 'op_baru'),
+(37, '', NULL, '2', '222222222222222222', '2', '2', '2', '2', 'BPHTB, Mutasi Nama & Pembetulan', 'selesai', '0002-02-02 00:00:00', 'mutasi2'),
+(38, '', NULL, '3', '333333333333333333', '3', '3', '3', '3', 'Objek Pajak Baru, Mutasi Bagian', 'selesai', '0003-03-03 00:00:00', 'op_baru');
 
 -- --------------------------------------------------------
 
@@ -77,7 +76,8 @@ INSERT INTO `roles` (`id`, `name`, `description`) VALUES
 (5, 'op_baru', 'Objek Pajak Baru'),
 (6, 'mutasi1', 'Mutasi 1'),
 (7, 'mutasi2', 'Mutasi 2'),
-(8, 'bphtb', 'BPHTB');
+(8, 'bphtb', 'BPHTB'),
+(9, 'monitoring', 'Pemantauan');
 
 -- --------------------------------------------------------
 
@@ -97,14 +97,15 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `role_id`) VALUES
-(1, 'petugas_loket', '$2y$10$oVc92/QQOrt3BSQ53Aoytu3xrPIybdN5TlGmGxYnDb2i/AtKshvwS', 1),
-(2, 'verlap', '$2y$10$RCjepqLqY.psCmu/irwRO.e.fQqoCB.vI7QfmhZbFE5yUyKq.DkV6', 2),
-(3, 'penetapan', '$2y$10$rg8g/jB01jsHJFjz72O4neae6TjE5Plq8fU1YsKWhuNItdb5R/fsy', 3),
-(4, 'kabid', '$2y$10$HbF2QYqfC8r38iSQxrnVTOOXxNi12nTeDPSiVlbKSLMwXuvRnK3X6', 4),
-(5, 'op_baru', '$2y$10$KlddM1ZAf93dvjMxfGRr9eAFd6DUfzdUFXj7EzNGScivnIFsd9LWq', 5),
-(6, 'mutasi1', '$2y$10$GKzvPbYjv0SApL5DlZRvS.SjMX3F4m8tdg.a676Hus0f8jI8FNd/2', 6),
-(7, 'mutasi2', '$2y$10$iIDohyCOsVrQNgD6Un2ZbeB4azBcpOZILZGTghgpW3bvKhh5UhY6m', 7),
-(8, 'bphtb', '$2y$10$zR.m8/aVm3uqZUa18iXtU.ddwtQKBcMhyKIlRpEOnELZgzZSsJB2K', 8);
+(1, 'petugas_loket', '$2y$10$ymnWFLSBeIfBNcewYyuCDO/OYvhD/tJcahV8j4vlFQrx1pY2I6N9m', 1),
+(2, 'verlap', '$2y$10$9EN.cyY7Vy7kk19huufg7.dOC51t65k9GJlkPBSMb4/XjKXKHrKtG', 2),
+(3, 'penetapan', '$2y$10$w6aZHbjqvJLkRZMehtDQlengWamQLFxXBVyfVWllVP0s6ZA6qC7FK', 3),
+(4, 'kabid', '$2y$10$b9dMJe/hIV79s51xfN95ke628WjcQgaHGoRTQsZxJos.gkBDuQLD.', 4),
+(5, 'op_baru', '$2y$10$azaz9pg4gsvCMwesz1BItuUrdjuVOemLwZClNQN9z3mcmJaz5Za2W', 5),
+(6, 'mutasi1', '$2y$10$QdiMsbnrLSsncIt3ZrK4iuv1qGPBYbliMXQ20M3jbqwTo2ovw9rRq', 6),
+(7, 'mutasi2', '$2y$10$SyNwNGhw8756gbLQBMJQaeqRjzVQsLpLh3qCOluN2afO1i2Z6Sh0u', 7),
+(8, 'bphtb', '$2y$10$yWXfZuwKkJHfotBUi38LHeQcmxwtkxBcQ6osoGHPdNwW7trI.TPzW', 8),
+(9, 'monitoring', '$2y$10$PuHsP3/kc/j7..49Khtguea1JYI6XsOd665DkpLcn6P1IBj4nz4tW', 9);
 
 --
 -- Indexes for dumped tables
@@ -140,19 +141,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `dokumen`
 --
 ALTER TABLE `dokumen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT untuk tabel `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
