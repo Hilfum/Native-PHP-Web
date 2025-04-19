@@ -167,6 +167,10 @@ if (!$result) {
                 <span></span>
             </div>
             <div class="hamburger-dropdown" id="hamburgerDropdown">
+                <div class="hamburger-menu-header">
+                    <span>Menu</span>
+                    <button class="close-hamburger" onclick="closeMenu(event)" aria-label="Tutup">&#10005;</button>
+                </div>
                 <div class="user-info">
                     Login sebagai: <b><?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?></b>
                 </div>
@@ -441,13 +445,17 @@ if (!$result) {
         function toggleMenu() {
             const menu = document.querySelector('.hamburger-menu-container');
             menu.classList.toggle('active');
-            // Close menu if click outside
             document.addEventListener('click', function handler(e) {
                 if (!menu.contains(e.target)) {
                     menu.classList.remove('active');
                     document.removeEventListener('click', handler);
                 }
             });
+        }
+
+        function closeMenu(e) {
+            e.stopPropagation();
+            document.querySelector('.hamburger-menu-container').classList.remove('active');
         }
     </script>
 </body>
