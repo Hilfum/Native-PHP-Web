@@ -6,7 +6,7 @@ if(isset($_GET['confirm']) && $_GET['confirm'] == 'yes') {
     session_destroy();
     echo "<script>
         alert('Akun " . $username . " telah berhasil logout.');
-        window.location.href = 'login.php';
+        window.location.href = 'index.php';
     </script>";
     exit();
 }

@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Input Data Berkas</title>
     <link rel="stylesheet" href="css/input.css">
 </head>
@@ -81,12 +81,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h2>Bapenda Kota Kendari</h2>
         </div>
         <div class="hamburger-menu-container">
-            <div class="hamburger-icon" onclick="toggleMenu()">
+            <div class="hamburger-icon" onclick="toggleMenu(event)">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
             <div class="hamburger-dropdown" id="hamburgerDropdown">
+                <div class="hamburger-menu-header">
+                    <span>Menu</span>
+                    <button class="close-hamburger" onclick="closeMenu(event)" aria-label="Tutup">&#10005;</button>
+                </div>
                 <div class="user-info">
                     Login sebagai: <b><?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?></b>
                 </div>
@@ -140,9 +144,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label>Tipe Berkas</label>
             <div class="checkbox-group">
                 <label><input type="checkbox" name="tipe_berkas[]" value="BPHTB"> BPHTB </label>
+                <label><input type="checkbox" name="tipe_berkas[]" value="Mutasi Nama & Pembetulan"> Mutasi Nama & Pembetulan </label>
                 <label><input type="checkbox" name="tipe_berkas[]" value="Objek Pajak Baru"> Objek Pajak Baru </label>
                 <label><input type="checkbox" name="tipe_berkas[]" value="Mutasi Bagian"> Mutasi Bagian </label>
-                <label><input type="checkbox" name="tipe_berkas[]" value="Mutasi Nama & Pembetulan"> Mutasi Nama & Pembetulan </label>
             </div>
 
             <label for="tanggal_masuk" style="margin-top:10px;">Tanggal Masuk Berkas</label>
@@ -211,16 +215,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    function toggleMenu() {
+    function toggleMenu(event) {
+        event.stopPropagation();
         const menu = document.querySelector('.hamburger-menu-container');
         menu.classList.toggle('active');
-        // Close menu if click outside
-        document.addEventListener('click', function handler(e) {
-            if (!menu.contains(e.target)) {
-                menu.classList.remove('active');
-                document.removeEventListener('click', handler);
-            }
-        });
+        if (menu.classList.contains('active')) {
+            document.addEventListener('click', closeMenuOnClickOutside);
+        }
+    }
+
+    function closeMenu(event) {
+        event.stopPropagation();
+        document.querySelector('.hamburger-menu-container').classList.remove('active');
+        document.removeEventListener('click', closeMenuOnClickOutside);
+    }
+
+    function closeMenuOnClickOutside(e) {
+        const menu = document.querySelector('.hamburger-menu-container');
+        if (!menu.contains(e.target)) {
+            menu.classList.remove('active');
+            document.removeEventListener('click', closeMenuOnClickOutside);
+        }
     }
     </script>
 </body>
