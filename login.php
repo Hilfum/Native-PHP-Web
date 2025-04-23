@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $query = "SELECT * FROM Users WHERE username = ?";
+    $query = "SELECT * FROM users WHERE username = ?";
     $stmt = mysqli_prepare($conn, $query);
     mysqli_stmt_bind_param($stmt, "s", $username);
     mysqli_stmt_execute($stmt);
@@ -72,13 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="background"></div>
     <div class="overlay"></div>
-    <div class="header">
-        <a href="index.php" class="logo-container">
-            <img src="gambar/Lambang_Kota_Kendari.png" alt="Logo Kota Kendari">
-            <h2>Bapenda Kota Kendari</h2>
-        </a>
-    </div>
-    <div class="login-container">
+    <div class="login-container" id="loginContainer">
         <h2>LOGIN</h2>
         <div class="error" style="color:red; margin-bottom:10px; display:none;"></div>
         <form action="login.php" method="POST">
@@ -90,6 +84,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
     </div>
     <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                document.getElementById('loginContainer').classList.add('show');
+            }, 80);
+        });
+
         document.querySelector('form').addEventListener('submit', function (e) {
             e.preventDefault();
 
@@ -112,33 +112,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 });
         });
 
-        // Check for logout parameter
         window.onload = function () {
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('logout') === 'success') {
                 const username = urlParams.get('username');
                 alert('Akun ' + username + ' telah berhasil logout.');
-                // Clean URL after showing alert
                 window.history.replaceState({}, document.title, window.location.pathname);
             }
         }
 
-        // Add this where your logout button handler is defined
         function handleLogout(e) {
             e.preventDefault();
             if (confirm('Apakah Anda yakin ingin logout?')) {
                 window.location.href = 'logout.php?confirm=yes';
-            }
-        }
-    </script>
-    <script>
-        window.onload = function () {
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.get('logout') === 'yes') {
-                const username = urlParams.get('username');
-                alert('Akun ' + username + ' telah berhasil logout.');
-                // Clean URL after showing alert
-                window.history.replaceState({}, document.title, window.location.pathname);
             }
         }
     </script>
