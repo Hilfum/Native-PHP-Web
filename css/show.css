@@ -57,17 +57,36 @@ body.show-body {
     padding: 20px;
 }
 
+/* Tombol kembali animasi */
 .back-button {
-    padding: 8px 15px;
-    background-color: #007bff;
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-    margin-right: auto;
+    background: linear-gradient(90deg, #ff7e5f 0%, #feb47b 100%);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 28px;
+    font-size: 1.03em;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 10px;
+    margin-right: 12px;
+    box-shadow: 0 2px 12px rgba(255,126,95,0.10);
+    transition: background 0.3s, transform 0.15s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+    outline: none;
+    text-decoration: none !important;
+    display: inline-block;
 }
 
-.back-button:hover {
-    background-color: #0056b3;
+.back-button:hover, .back-button:focus {
+    background: linear-gradient(90deg, #feb47b 0%, #ff7e5f 100%);
+    transform: translateY(-2px) scale(1.04) rotate(-2deg);
+    box-shadow: 0 6px 24px rgba(255,126,95,0.18);
+}
+
+.back-button:active {
+    transform: scale(0.97);
+    box-shadow: 0 2px 8px rgba(255,126,95,0.10);
 }
 
 h2 {
