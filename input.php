@@ -87,19 +87,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <span></span>
             </div>
             <div class="hamburger-dropdown" id="hamburgerDropdown">
-                <div class="hamburger-menu-header">
-                    <span>Menu</span>
-                    <button class="close-hamburger" onclick="closeMenu(event)" aria-label="Tutup">&#10005;</button>
+                <button class="close-hamburger" onclick="closeMenu(event)" aria-label="Tutup">&#10005;</button>
+                <div class="menu-row">
+                    <div class="user-info">
+                        Login sebagai: <b><?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?></b>
+                    </div>
+                    <a href="#" class="logout-button" onclick="handleLogout(event)">
+                        Keluar (Logout)
+                    </a>
                 </div>
-                <div class="user-info">
-                    Login sebagai: <b><?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?></b>
-                </div>
-                <a href="#" class="logout-button" onclick="handleLogout(event)" style="color:#222;font-weight:bold;">
-                    <span style="margin-right:6px;">&#x1F511;</span> Keluar (Logout)
-                </a>
             </div>
         </div>
     </div>
+    <div class="menu-overlay" id="menuOverlay"></div>
     <div class="container-input">
         <h2>INPUT BERKAS</h2>
         <form action="" method="POST">
@@ -156,8 +156,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <div class="button-group">
-                <button type="submit">Simpan Data</button>
-                <a href="show.php" class="button-secondary-input">Lihat Data</a>
+                <button type="submit" class="button-animated">Simpan Data</button>
+                <a href="show.php" class="button-secondary-animated" id="lihatDataBtn">Lihat Data</a>
             </div>
         </form>
     </div>
@@ -218,25 +218,54 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     function toggleMenu(event) {
         event.stopPropagation();
         const menu = document.querySelector('.hamburger-menu-container');
+        const overlay = document.getElementById('menuOverlay');
         menu.classList.toggle('active');
         if (menu.classList.contains('active')) {
+            overlay.classList.add('active');
             document.addEventListener('click', closeMenuOnClickOutside);
+        } else {
+            overlay.classList.remove('active');
         }
     }
 
     function closeMenu(event) {
         event.stopPropagation();
         document.querySelector('.hamburger-menu-container').classList.remove('active');
+        document.getElementById('menuOverlay').classList.remove('active');
         document.removeEventListener('click', closeMenuOnClickOutside);
     }
 
     function closeMenuOnClickOutside(e) {
         const menu = document.querySelector('.hamburger-menu-container');
+        const overlay = document.getElementById('menuOverlay');
         if (!menu.contains(e.target)) {
             menu.classList.remove('active');
+            overlay.classList.remove('active');
             document.removeEventListener('click', closeMenuOnClickOutside);
         }
     }
+
+    document.getElementById('lihatDataBtn').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.body.classList.add('page-fade-out');
+        setTimeout(() => {
+            window.location.href = this.href;
+        }, 600); // waktu harus sama dengan durasi animasi CSS
+    });
+    </script>
+    <script>
+    // Fade in saat halaman dimuat
+    document.body.classList.add('page-fade-in');
+
+    // Fade out saat klik "Lihat Data"
+    document.getElementById('lihatDataBtn').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.body.classList.remove('page-fade-in');
+        document.body.classList.add('page-fade-out');
+        setTimeout(() => {
+            window.location.href = this.href;
+        }, 600);
+    });
     </script>
 </body>
 </html>

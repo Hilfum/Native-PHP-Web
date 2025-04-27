@@ -161,30 +161,29 @@ if (!$result) {
             <h2>Bapenda Kota Kendari</h2>
         </div>
         <div class="hamburger-menu-container">
-            <div class="hamburger-icon" onclick="toggleMenu()">
+            <div class="hamburger-icon" onclick="toggleMenu(event)">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
             <div class="hamburger-dropdown" id="hamburgerDropdown">
-                <div class="hamburger-menu-header">
-                    <span>Menu</span>
-                    <button class="close-hamburger" onclick="closeMenu(event)" aria-label="Tutup">&#10005;</button>
+                <div class="menu-row">
+                    <div class="user-info">
+                        Login sebagai: <b><?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?></b>
+                    </div>
+                    <a href="#" class="logout-button" onclick="handleLogout(event)">
+                        Keluar (Logout)
+                    </a>
                 </div>
-                <div class="user-info">
-                    Login sebagai: <b><?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?></b>
-                </div>
-                <a href="#" class="logout-button" onclick="handleLogout(event)" style="color:#222;font-weight:bold;">
-                    <span style="margin-right:6px;">&#x1F511;</span> Keluar (Logout)
-                </a>
             </div>
         </div>
     </div>
+    <div class="menu-overlay" id="menuOverlay"></div>
     <div class="content">
         <div class="table-container">
             <div class="table-header">
                 <?php if ($_SESSION['role'] == 'loket'): ?>
-                    <a href="input.php" class="back-button">Kembali ke Halaman Input</a>
+                    <a href="input.php" class="back-button" id="kembaliInputBtn">Kembali ke Halaman Input</a>
                 <?php endif; ?> 
                 <div class="entries-container">
                     <label>Show
@@ -442,20 +441,65 @@ if (!$result) {
             window.location.href = currentUrl.toString();
         }
 
-        function toggleMenu() {
+        function toggleMenu(event) {
+            event.stopPropagation();
             const menu = document.querySelector('.hamburger-menu-container');
+            const overlay = document.getElementById('menuOverlay');
             menu.classList.toggle('active');
-            document.addEventListener('click', function handler(e) {
-                if (!menu.contains(e.target)) {
-                    menu.classList.remove('active');
-                    document.removeEventListener('click', handler);
-                }
-            });
+            if (menu.classList.contains('active')) {
+                overlay.classList.add('active');
+                document.addEventListener('click', closeMenuOnClickOutside);
+            } else {
+                overlay.classList.remove('active');
+            }
         }
-
-        function closeMenu(e) {
-            e.stopPropagation();
+        function closeMenu(event) {
+            event.stopPropagation();
             document.querySelector('.hamburger-menu-container').classList.remove('active');
+            document.getElementById('menuOverlay').classList.remove('active');
+            document.removeEventListener('click', closeMenuOnClickOutside);
+        }
+        function closeMenuOnClickOutside(e) {
+            const menu = document.querySelector('.hamburger-menu-container');
+            const overlay = document.getElementById('menuOverlay');
+            if (!menu.contains(e.target)) {
+                menu.classList.remove('active');
+                overlay.classList.remove('active');
+                document.removeEventListener('click', closeMenuOnClickOutside);
+            }
+        }
+        function handleLogout(e) {
+            e.preventDefault();
+            if(confirm('Apakah Anda yakin ingin logout?')) {
+                window.location.href = 'logout.php?confirm=yes';
+            }
+        }
+    </script>
+    <script>
+        // Fade in saat halaman dimuat
+        document.body.classList.add('page-fade-in');
+
+        // Fade out saat klik "Lihat Data"
+        document.getElementById('lihatDataBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.body.classList.remove('page-fade-in');
+            document.body.classList.add('page-fade-out');
+            setTimeout(() => {
+                window.location.href = this.href;
+            }, 600);
+        });
+
+        // Fade out saat klik "Kembali ke Halaman Input"
+        const kembaliBtn = document.getElementById('kembaliInputBtn');
+        if (kembaliBtn) {
+            kembaliBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.body.classList.remove('page-fade-in');
+                document.body.classList.add('page-fade-out');
+                setTimeout(() => {
+                    window.location.href = this.href;
+                }, 600);
+            });
         }
     </script>
 </body>
