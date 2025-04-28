@@ -91,55 +91,64 @@ h2 {
 }
 
 /* Tambahkan di css/index.css */
+/* Tombol login interaktif dan animasi */
 .login-button {
-    margin-top: 20px;
-    padding: 10px 32px;
-    background-color: #007bff;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 1.1em;
-    font-weight: bold;
+    display: inline-block;
+    background: linear-gradient(90deg, #007bff 0%, #00c6ff 100%);
+    color: #fff;
     border: none;
-    box-shadow: 0 4px 16px rgba(0,123,255,0.15);
-    transition: 
-        background 0.2s,
-        transform 0.15s cubic-bezier(.4,2,.6,1),
-        box-shadow 0.2s;
-    outline: none;
+    border-radius: 14px;
+    padding: 14px 38px;
+    font-size: 1.15em;
+    font-weight: bold;
     cursor: pointer;
+    box-shadow: 0 2px 16px rgba(0,123,255,0.13);
+    transition: background 0.35s, transform 0.18s, box-shadow 0.35s;
     position: relative;
     overflow: hidden;
+    outline: none;
+    text-decoration: none !important;
+    letter-spacing: 1px;
+    margin-top: 18px;
+    animation: bounceIn 0.7s cubic-bezier(.4,1.4,.6,1);
 }
-
-.login-button:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px) scale(1.04);
-    box-shadow: 0 8px 24px rgba(0,86,179,0.18);
+.login-button:hover, .login-button:focus {
+    background: linear-gradient(90deg, #00c6ff 0%, #007bff 100%);
+    transform: translateY(-3px) scale(1.06) rotate(-1.5deg);
+    box-shadow: 0 8px 32px rgba(0,123,255,0.22);
 }
-
 .login-button:active {
-    background-color: #003d80;
-    transform: scale(0.96);
-    box-shadow: 0 2px 8px rgba(0,86,179,0.10);
+    transform: scale(0.97);
+    box-shadow: 0 2px 8px rgba(0,123,255,0.10);
 }
-
-.login-button::after {
-    content: "";
-    position: absolute;
-    left: 50%; top: 50%;
-    width: 0; height: 0;
-    background: rgba(255,255,255,0.3);
-    border-radius: 100%;
-    transform: translate(-50%, -50%);
-    transition: width 0.3s, height 0.3s, opacity 0.3s;
-    opacity: 0;
-    pointer-events: none;
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.7) translateY(60px);
+        filter: blur(2px);
+    }
+    60% {
+        opacity: 1;
+        transform: scale(1.08) translateY(-10px);
+        filter: blur(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        filter: blur(0);
+    }
 }
-
-.login-button:active::after {
-    width: 180%;
-    height: 500%;
-    opacity: 1;
-    transition: 0s;
+/* Untuk animasi keluar (opsional, jika ingin efek bounce out) */
+.bounceOut {
+    animation: bounceOut 0.4s forwards;
+}
+@keyframes bounceOut {
+    0% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.7) translateY(60px);
+    }
 }
