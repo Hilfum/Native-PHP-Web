@@ -88,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                    value="<?php echo htmlspecialchars($row['nop']); ?>" 
                    required
                    maxlength="24"
-                   placeholder="74.71.770.006.003.1146.0"
+                   placeholder="74.71.000.000.000.0000.0"
                    autocomplete="off">
 
             <label>Kelurahan Objek Pajak</label>
@@ -98,128 +98,63 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                    required
                    placeholder="Contoh: Kadia">
 
-            <label>Kecamatan Objek Pajak:</label>
-            <input type="text" name="kecamatan_objek_pajak" value="<?php echo htmlspecialchars($row['kecamatan_objek_pajak']); ?>" required>
+            <label>Kecamatan Objek Pajak</label>
+            <input type="text" 
+                   name="kecamatan_objek_pajak" 
+                   value="<?php echo htmlspecialchars($row['kecamatan_objek_pajak']); ?>" 
+                   required
+                   placeholder="Contoh: Kadia">
 
-            <label>Alamat Wajib Pajak:</label>
-            <input type="text" name="alamat_wajib_pajak" value="<?php echo htmlspecialchars($row['alamat_wajib_pajak']); ?>" required>
+            <label>Alamat Wajib Pajak</label>
+            <input type="text" 
+                   name="alamat_wajib_pajak" 
+                   value="<?php echo htmlspecialchars($row['alamat_wajib_pajak']); ?>" 
+                   required
+                   placeholder="Masukkan alamat lengkap wajib pajak">
 
-            <label>Alamat Objek Pajak:</label>
-            <input type="text" name="alamat_objek_pajak" value="<?php echo htmlspecialchars($row['alamat_objek_pajak']); ?>" required>
+            <label>Alamat Objek Pajak</label>
+            <input type="text" 
+                   name="alamat_objek_pajak" 
+                   value="<?php echo htmlspecialchars($row['alamat_objek_pajak']); ?>" 
+                   required
+                   placeholder="Masukkan alamat lengkap objek pajak">
 
-            <label>Tipe Berkas:</label>
+            <label>Tipe Berkas</label>
             <div class="checkbox-group">
                 <?php
                 $tipe_berkas = explode(", ", $row['tipe_berkas']);
-                $options = ["BPHTB", "Objek Pajak Baru", "Mutasi Bagian", "Mutasi Nama & Pembetulan"];
-                foreach ($options as $option) {
-                    $checked = in_array($option, $tipe_berkas) ? "checked" : "";
-                    echo "<label><input type='checkbox' name='tipe_berkas[]' value='$option' $checked> $option</label>";
-                }
+                $checked1 = in_array("BPHTB", $tipe_berkas) ? "checked" : "";
+                $checked2 = in_array("Mutasi Nama & Pembetulan", $tipe_berkas) ? "checked" : "";
+                $checked3 = in_array("Objek Pajak Baru", $tipe_berkas) ? "checked" : "";
+                $checked4 = in_array("Mutasi Bagian", $tipe_berkas) ? "checked" : "";
                 ?>
+                <label><input type="checkbox" name="tipe_berkas[]" value="BPHTB" <?php echo $checked1; ?>> BPHTB</label>
+                <label><input type="checkbox" name="tipe_berkas[]" value="Mutasi Nama & Pembetulan" <?php echo $checked2; ?>> Mutasi Nama & Pembetulan</label>
+                <label><input type="checkbox" name="tipe_berkas[]" value="Objek Pajak Baru" <?php echo $checked3; ?>> Objek Pajak Baru</label>
+                <label><input type="checkbox" name="tipe_berkas[]" value="Mutasi Bagian" <?php echo $checked4; ?>> Mutasi Bagian</label>
             </div>
 
-            <!-- Tambahkan input tanggal masuk seperti input.php -->
             <label for="tanggal_masuk" style="margin-top:10px;">Tanggal Masuk Berkas</label>
             <div class="input-date-group">
                 <span class="calendar-icon">&#128197;</span>
-                <input type="date" id="tanggal_masuk" name="tanggal_masuk" required value="<?php echo htmlspecialchars($row['tanggal_masuk']); ?>">
+                <input type="date" id="tanggal_masuk" name="tanggal_masuk" required 
+                    value="<?php
+                        $tanggal = $row['tanggal_masuk'] ?? '';
+                        // Jika ada waktu, ambil hanya tanggalnya
+                        if ($tanggal && strpos($tanggal, '-') !== false) {
+                            $tanggal = substr($tanggal, 0, 10);
+                        }
+                        echo htmlspecialchars($tanggal ?: date('Y-m-d'));
+                    ?>">
             </div>
 
             <div class="button-group">
-                <button type="submit">Update</button>
-                <button type="button" id="cancelButton" class="button-secondary">Cancel</button>
+                <button type="submit" class="button-animated">Simpan</button>
+                <button type="button" id="cancelButton" class="button-secondary-animated">Batal</button>
             </div>
         </form>
-    </div>
-    <script>
-    document.querySelector('input[name="nop"]').addEventListener('input', function(e) {
-        // Hapus semua karakter non-digit
-        let value = this.value.replace(/\D/g, '');
-        
-        // Batasi hingga 18 digit
-        if (value.length > 18) {
-            value = value.slice(0, 18);
-        }
-        
-        // Format NOP dengan titik
-        let formattedValue = '';
-        for (let i = 0; i < value.length; i++) {
-            if (i === 2 || i === 4 || i === 7 || i === 10 || i === 13 || i === 17) {
-                formattedValue += '.';
-            }
-            formattedValue += value[i];
-        }
-        
-        this.value = formattedValue;
-    });
-
-    // Replace the existing cancel button handler
-    document.getElementById('cancelButton').addEventListener('click', function(e) {
-        // Cek apakah ada perubahan pada form
-        const formChanged = isFormChanged();
-        
-        if (formChanged) {
-            if (alert('Ada perubahan yang belum disimpan. Yakin ingin membatalkan?')) {
-                window.location.href = 'show.php';
-            }
-        } else {
-            window.location.href = 'show.php';
-        }
-    });
-
-    // Fungsi untuk mengecek perubahan pada form
-    function isFormChanged() {
-        const form = document.querySelector('form');
-        const inputs = form.querySelectorAll('input[type="text"]');
-        const checkboxes = form.querySelectorAll('input[type="checkbox"]');
-        let changed = false;
-
-        // Cek perubahan pada input text
-        inputs.forEach(input => {
-            if (input.value !== input.defaultValue) {
-                changed = true;
-            }
-        });
-
-        // Cek perubahan pada checkbox
-        const originalTipeBerkas = <?php echo json_encode(explode(", ", $row['tipe_berkas'])); ?>;
-        const currentTipeBerkas = Array.from(checkboxes)
-            .filter(cb => cb.checked)
-            .map(cb => cb.value);
-
-        if (JSON.stringify(originalTipeBerkas.sort()) !== JSON.stringify(currentTipeBerkas.sort())) {
-            changed = true;
-        }
-
-        return changed;
-    }
-    </script>
-
-    <!-- Tambahkan CSS jika belum ada -->
-    <style>
-    .input-date-group {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
-    }
-    .input-date-group .calendar-icon {
-        font-size: 1.5em;
-        margin-right: 8px;
-        color: #3498db;
-    }
-    .input-date-group input[type="date"] {
-        padding: 8px 12px;
-        font-size: 1.1em;
-        border-radius: 6px;
-        border: 1px solid #ccc;
-        transition: border-color 0.2s;
-    }
-    .input-date-group input[type="date"]:focus {
-        border-color: #3498db;
-        outline: none;
-    }
-    </style>
+    </div>  
+    <script src="javascript/edit.js"></script>
 </body>
 </html>
 
