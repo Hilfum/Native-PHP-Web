@@ -250,11 +250,6 @@ if (!$result) {
                             <td style="width:120px;">
                                 <input type="text" name="search_kecamatan" placeholder="Cari Kecamatan..." value="<?php echo isset($_GET['search_kecamatan']) ? htmlspecialchars($_GET['search_kecamatan']) : ''; ?>">
                             </td>
-                            <?php if ($_SESSION['role'] !== 'monitoring'): ?>
-                            <td rowspan="2" style="vertical-align:top;width:90px;">
-                                <button type="submit" class="search-btn-big" style="height:100%;">Cari</button>
-                            </td>
-                            <?php endif; ?>
                         </tr>
                         <tr>
                             <td style="width:170px;">
@@ -293,6 +288,12 @@ if (!$result) {
                                         ?>
                                     </select>
                                     <button type="submit" class="search-btn-big" style="width:40%;">Cari</button>
+                                </div>
+                            </td>
+                            <?php else: ?>
+                            <td style="width:120px;">
+                                <div style="display:flex;align-items:stretch;height:40px;">
+                                    <button type="submit" class="search-btn-big" style="width:100%;height:40px;">Cari</button>
                                 </div>
                             </td>
                             <?php endif; ?>

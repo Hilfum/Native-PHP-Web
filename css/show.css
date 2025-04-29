@@ -1,3 +1,12 @@
+/* Untuk seluruh halaman */
+body, html {
+    scrollbar-width: none;      /* Firefox */
+    -ms-overflow-style: none;   /* IE 10+ */
+}
+body::-webkit-scrollbar, html::-webkit-scrollbar {
+    display: none;              /* Chrome, Safari, Opera */
+}
+
 body.show-body {
     min-height: 100vh;
     overflow-x: auto;
@@ -347,6 +356,11 @@ h2 {
     margin-left: 8px;
     margin-right: 0;
     display: inline-block;
+    height: 40px;
+    padding: 8px 12px;
+    font-size: 1em;
+    border-radius: 6px;
+    box-sizing: border-box;
 }
 .search-table button[type="submit"]:hover, .search-btn-big:hover {
     background: linear-gradient(90deg, #00c6ff 0%, #007bff 100%);

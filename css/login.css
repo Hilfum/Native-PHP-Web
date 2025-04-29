@@ -1,3 +1,13 @@
+/* Sembunyikan scrollbar tapi tetap bisa scroll di halaman login */
+html, body {
+    overflow: auto !important;         /* Pastikan scroll tetap aktif */
+    scrollbar-width: none;             /* Firefox */
+    -ms-overflow-style: none;          /* IE 10+ */
+}
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+    display: none;                     /* Chrome, Safari, Opera */
+}
+
 html, body {
     height: 100%;
     margin: 0;
