@@ -71,6 +71,7 @@ function closeMenuOnClickOutside(e) {
 // Animasi halaman dan tombol lihat data
 window.addEventListener('DOMContentLoaded', function() {
     document.body.classList.add('page-fade-in');
+    document.querySelector('.container-input').classList.add('page-fade-in');
     const lihatDataBtn = document.getElementById('lihatDataBtn');
     if (lihatDataBtn) {
         lihatDataBtn.addEventListener('click', function(e) {

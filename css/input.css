@@ -7,7 +7,7 @@ body.input-body {
     justify-content: flex-start;
     min-height: 100vh;
     margin: 0;
-    padding-top: 80px;
+    padding-top: 0; /* Ubah dari 80px ke 0 */
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
 }
@@ -67,7 +67,7 @@ body.input-body {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
     background-color: #fff;
     border-radius: 10px;
-    margin: 18px auto 0 auto;
+    margin: 90px auto 0 auto; /* Ganti dari 18px ke 90px (header 70px + sedikit jarak) */
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
