@@ -88,6 +88,7 @@ body.show-body {
     cursor: pointer;
     margin-bottom: 10px;
     margin-right: 12px;
+    margin-left: 12px;
     box-shadow: 0 2px 12px rgba(255,126,95,0.10);
     transition: background 0.3s, transform 0.15s, box-shadow 0.3s;
     position: relative;
@@ -488,96 +489,184 @@ td.kelurahan-objek-pajak, td.kecamatan-objek-pajak {
     border: 1px solid #ddd;
 }
 
-.status-pending,
-.status-selesai,
-.status-proses,
-.status-ditolak {
-    display: inline-block;
-    font-weight: bold;
-    text-align: center;
-    padding: 6px 16px;
-    border-radius: 20px;
-    min-width: 100px;
-    margin: 5px auto;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
+/* Status Berkas Modern & Menarik */
 .status-pending {
-    background-color: #ffc107;
-    color: #5a3b00;
+    background: linear-gradient(90deg, #ffe082 0%, #ffd54f 100%);
+    color: #7a5a00;
+    border: none;
+    box-shadow: 0 2px 8px rgba(255, 193, 7, 0.10);
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 18px;
+    border-radius: 18px;
+    font-size: 1em;
+    letter-spacing: 0.5px;
+}
+.status-pending::before {
+    content: "⏳";
+    font-size: 1.1em;
 }
 
 .status-selesai {
-    background: #28a745;
-    color: #fff;
-    padding: 4px 10px;
-    border-radius: 5px;
+    background: linear-gradient(90deg, #b2f7c1 0%, #43e97b 100%);
+    color: #20734d;
+    border: none;
+    box-shadow: 0 2px 8px rgba(67,233,123,0.10);
     font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 18px;
+    border-radius: 18px;
+    font-size: 1em;
+    letter-spacing: 0.5px;
+    transition: background 0.22s, box-shadow 0.22s, color 0.18s;
+}
+.status-selesai::before {
+    content: "✔️";
+    font-size: 1.1em;
+}
+.status-selesai:hover, .status-selesai:focus {
+    background: linear-gradient(90deg, #43e97b 0%, #b2f7c1 100%);
+    color: #fff;
+    box-shadow: 0 6px 24px rgba(67,233,123,0.18);
 }
 
 .status-proses {
-    background-color: #007bff;
-    color: white;
+    background: linear-gradient(90deg, #89f7fe 0%, #66a6ff 100%);
+    color: #005fa3;
+    border: none;
+    box-shadow: 0 2px 8px rgba(102,166,255,0.10);
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 18px;
+    border-radius: 18px;
+    font-size: 1em;
+    letter-spacing: 0.5px;
+}
+.status-proses::before {
+    content: "🔄";
+    font-size: 1.1em;
 }
 
 .status-ditolak {
-    background-color: #dc3545;
-    color: white;
-}
-
-.status-sampai {
-    color: #4CAF50;
+    background: linear-gradient(90deg, #ff5858 0%, #f09819 100%);
+    color: #fff;
+    border: none;
+    box-shadow: 0 2px 8px rgba(255,88,88,0.10);
     font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 18px;
+    border-radius: 18px;
+    font-size: 1em;
+    letter-spacing: 0.5px;
+}
+.status-ditolak::before {
+    content: "❌";
+    font-size: 1.1em;
 }
 
-/* Action buttons */
+/* Action buttons: ukuran sama, warna soft, animasi interaktif */
 .btn-edit {
-    background: #ffc107;
-    color: #222;
-    padding: 5px 12px;
+    background: linear-gradient(90deg, #ffe082 0%, #fffde7 100%);
+    color: #6d4c00;
+    min-width: 90px;
+    padding: 8px 0;
     border: none;
-    border-radius: 5px;
+    border-radius: 7px;
     text-decoration: none;
     font-weight: bold;
-    margin-right: 4px;
-    transition: background 0.2s;
-}
-.btn-edit:hover { background: #e0a800; color: #fff; }
-
-.btn-delete {
-    background: #e74c3c;
-    color: #fff;
-    padding: 5px 12px;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    margin-right: 4px;
-    transition: background 0.2s;
-}
-.btn-delete:hover { background: #c0392b; }
-
-.btn-confirm {
-    background: #28a745;
-    color: #fff;
-    padding: 5px 12px;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.2s;
-    margin-right: 0;
-}
-.btn-confirm:hover { background: #218838; }
-
-.btn-edit,
-.btn-delete,
-.btn-confirm {
     margin-right: 6px;
     margin-top: 6px;
     margin-bottom: 6px;
     display: inline-block;
     vertical-align: middle;
+    font-size: 1em;
+    transition: 
+        background 0.22s cubic-bezier(.4,0,.2,1),
+        color 0.18s,
+        box-shadow 0.22s,
+        transform 0.13s;
+    box-shadow: 0 2px 8px rgba(255,193,7,0.10);
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.btn-edit:hover, .btn-edit:focus {
+    background: linear-gradient(90deg, #ffd54f 0%, #fffde7 100%);
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(255,213,79,0.18);
+    transform: translateY(-2px) scale(1.04);
+}
+
+.btn-delete {
+    background: linear-gradient(90deg, #ffb3b3 0%, #fff0f0 100%);
+    color: #a80000;
+    min-width: 90px;
+    padding: 8px 0;
+    border: none;
+    border-radius: 7px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 6px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 1em;
+    transition: 
+        background 0.22s cubic-bezier(.4,0,.2,1),
+        color 0.18s,
+        box-shadow 0.22s,
+        transform 0.13s;
+    box-shadow: 0 2px 8px rgba(255,102,102,0.10);
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.btn-delete:hover, .btn-delete:focus {
+    background: linear-gradient(90deg, #ff6666 0%, #fff0f0 100%);
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(255,102,102,0.18);
+    transform: translateY(-2px) scale(1.04);
+}
+
+.btn-confirm {
+    background: linear-gradient(90deg, #b2f2bb 0%, #e6fff2 100%);
+    color: #006d3c;
+    min-width: 90px;
+    padding: 8px 0;
+    border: none;
+    border-radius: 7px;
+    font-weight: bold;
+    margin-right: 6px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 1em;
+    cursor: pointer;
+    transition: 
+        background 0.22s cubic-bezier(.4,0,.2,1),
+        color 0.18s,
+        box-shadow 0.22s,
+        transform 0.13s;
+    box-shadow: 0 2px 8px rgba(105,240,174,0.10);
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.btn-confirm:hover, .btn-confirm:focus {
+    background: linear-gradient(90deg, #69f0ae 0%, #e6fff2 100%);
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(105,240,174,0.18);
+    transform: translateY(-2px) scale(1.04);
 }
 
 /* Pagination */
@@ -765,11 +854,11 @@ td.kelurahan-objek-pajak, td.kecamatan-objek-pajak {
 }
 
 /* Animasi keluar dan masuk halaman */
-.page-fade-out {
-    animation: fadeOutPage 0.6s forwards;
-}
 .page-fade-in {
     animation: fadeInSlideDown 0.6s cubic-bezier(.4,0,.2,1);
+}
+.page-fade-out {
+    animation: fadeOutSlideUp 0.6s forwards;
 }
 @keyframes fadeOutPage {
     to {
@@ -791,11 +880,18 @@ td.kelurahan-objek-pajak, td.kecamatan-objek-pajak {
 @keyframes fadeInSlideDown {
     from {
         opacity: 0;
-        transform: translateY(-32px); /* Geser dari atas ke bawah */
+        transform: translateY(-32px);
     }
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+@keyframes fadeOutSlideUp {
+    to {
+        opacity: 0;
+        transform: translateY(-32px);
+        filter: blur(2px);
     }
 }
 
@@ -829,4 +925,25 @@ td.kelurahan-objek-pajak, td.kecamatan-objek-pajak {
 .data-table td.tipe-berkas,
 .data-table td.handler {
     text-align: center;
+}
+
+/* Alternating row color & row spacing for .data-table */
+.data-table tbody tr:nth-child(odd) {
+    background-color: #f8fbff;
+}
+.data-table tbody tr:nth-child(even) {
+    background-color: #f2f4f8;
+}
+
+/* Jeda antar baris */
+.data-table tbody tr:not(:last-child) {
+    border-bottom: 10px solid transparent;
+}
+.data-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+/* Jika ingin efek hover juga */
+.data-table tbody tr:hover {
+    background-color: #e6f0ff;
 }

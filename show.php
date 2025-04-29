@@ -345,7 +345,7 @@ if (!$result) {
                             </td>
                             <td class="status-cell">
                                 <?php if (strtolower($row['status']) === 'selesai'): ?>
-                                    <span class="status-selesai" style="background:#28a745;color:#fff;padding:4px 10px;border-radius:5px;font-weight:bold;">
+                                    <span class="status-selesai">
                                         Selesai
                                     </span>
                                 <?php else: ?>
