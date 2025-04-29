@@ -187,15 +187,10 @@ if (!$result) {
                     <a href="input.php" class="back-button" id="kembaliInputBtn">Kembali ke Halaman Input</a>
                 <?php endif; ?> 
                 <div class="entries-container">
-                    <label>Show
-                        <select name="entries" id="entries" onchange="changeEntries(this.value)">
-                            <option value="10" <?php echo isset($_GET['entries']) && $_GET['entries'] == '10' ? 'selected' : ''; ?>>10</option>
-                            <option value="25" <?php echo isset($_GET['entries']) && $_GET['entries'] == '25' ? 'selected' : ''; ?>>25</option>
-                            <option value="50" <?php echo isset($_GET['entries']) && $_GET['entries'] == '50' ? 'selected' : ''; ?>>50</option>
-                            <option value="100" <?php echo isset($_GET['entries']) && $_GET['entries'] == '100' ? 'selected' : ''; ?>>100</option>
-                        </select>
-                        entries
-                    </label>
+                    <label for="entries">Tampilkan:</label>
+                    <input type="range" id="entries" min="5" max="100" step="5" value="<?php echo $entries; ?>">
+                    <span class="entries-value" id="entryValue"><?php echo $entries; ?></span>
+                    <span>entri</span>
                 </div>
             </div>
 
@@ -375,7 +370,7 @@ if (!$result) {
                                     </a>
                                     <form action="delete.php?id=<?php echo $row['id']; ?>" method="POST" style="display:inline;" onsubmit="return confirm('Hapus data ini?')">
                                         <button type="submit" class="btn-delete" title="Hapus">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 448 512"><path fill="currentColor" d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0h120.4c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64s14.3-32 32-32h96zM32 128h384v320c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64zm96 64c-8.8 0-16 7.2-16 16v224c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16m96 0c-8.8 0-16 7.2-16 16v224c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16m96 0c-8.8 0-16 7.2-16 16v224c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16"/></svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 448 512"><path fill="currentColor" d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0h120.4c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64s14.3-32 32-32h96zM32 128h384v320c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64zm96 64c-8.8 0-16 7.2-16 16v224c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16m96 0c-8.8 0-16 7.2-16 16v224c0-8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16m96 0c-8.8 0-16 7.2-16 16v224c0-8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16"/></svg>
                                         </button>
                                     </form>
                                     <?php if (strtolower($row['status']) !== 'selesai'): ?>

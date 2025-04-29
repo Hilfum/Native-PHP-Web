@@ -91,3 +91,18 @@ window.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+const slider = document.getElementById("entries");
+const valueDisplay = document.getElementById("entryValue");
+
+slider.addEventListener("input", () => {
+    valueDisplay.textContent = slider.value;
+});
+
+slider.addEventListener("change", () => {
+    // Reload halaman dengan parameter entries baru
+    const url = new URL(window.location.href);
+    url.searchParams.set('entries', slider.value);
+    url.searchParams.set('page', 1); // reset ke halaman 1
+    window.location.href = url.toString();
+});

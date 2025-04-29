@@ -133,8 +133,7 @@ h2 {
 .entries-container {
     display: flex;
     align-items: center;
-    margin: 0;
-    margin-left: auto;
+    gap: 10px;
 }
 
 .entries-container select {
@@ -142,6 +141,38 @@ h2 {
     padding: 5px;
     border-radius: 4px;
     border: 1px solid #ddd;
+}
+
+input[type="range"] {
+    width: 180px;
+    appearance: none;
+    height: 6px;
+    background: #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #007bff;
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+input[type="range"]::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #007bff;
+    cursor: pointer;
+    border: 2px solid white;
+}
+
+.entries-value {
+    font-weight: bold;
+    min-width: 30px;
 }
 
 /* Modern Search Container */
@@ -491,18 +522,26 @@ td.kelurahan-objek-pajak, td.kecamatan-objek-pajak {
 
 /* Status Berkas Modern & Menarik */
 .status-pending {
-    background: linear-gradient(90deg, #ffe082 0%, #ffd54f 100%);
-    color: #7a5a00;
+    background: linear-gradient(90deg, #fffde7 25%, #ffe082 50%, #fffde7 75%);
+    color: #b28704;
     border: none;
-    box-shadow: 0 2px 8px rgba(255, 193, 7, 0.10);
     font-weight: bold;
+    border-radius: 18px;
+    padding: 7px 18px;
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 7px 18px;
-    border-radius: 18px;
-    font-size: 1em;
-    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(255,193,7,0.10);
+    animation: shimmer-pending 6s linear infinite; /* Lebih lambat */
+    background-size: 200% 100%;
+}
+
+@keyframes shimmer-pending {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
 }
 
 .status-selesai {
