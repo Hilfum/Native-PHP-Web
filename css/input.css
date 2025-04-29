@@ -42,10 +42,10 @@ body.input-body {
 }
 
 .header h2 {
-    margin: 0;
-    font-size: 24px;             /* px, bukan em/rem */
+    font-size: 1.3em;
     font-weight: bold;
     color: white;
+    margin: 0;
 }
 
 .logout-button {

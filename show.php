@@ -203,38 +203,40 @@ if (!$result) {
                     <table class="search-table">
                         <tr>
                             <td style="width:170px;">
-                                <select name="search_date_start" class="date-select" style="width:110px;">
-                                    <option value="">Tanggal</option>
-                                    <?php for ($day = 1; $day <= 31; $day++): 
-                                        $day_padded = str_pad($day, 2, '0', STR_PAD_LEFT);
-                                        $selected = (isset($_GET['search_date_start']) && $_GET['search_date_start'] == $day_padded) ? 'selected' : '';
-                                        echo "<option value='$day_padded' $selected>$day_padded</option>";
-                                    endfor; ?>
-                                </select>
-                                <select name="search_month" class="date-select" style="width:120px;">
-                                    <option value="">Bulan</option>
-                                    <?php
-                                    $months = [
-                                        '01' => 'Januari', '02' => 'Februari', '03' => 'Maret', '04' => 'April',
-                                        '05' => 'Mei', '06' => 'Juni', '07' => 'Juli', '08' => 'Agustus',
-                                        '09' => 'September', '10' => 'Oktober', '11' => 'November', '12' => 'Desember'
-                                    ];
-                                    foreach ($months as $num => $name) {
-                                        $selected = (isset($_GET['search_month']) && $_GET['search_month'] == $num) ? 'selected' : '';
-                                        echo "<option value='$num' $selected>$name</option>";
-                                    }
-                                    ?>
-                                </select>
-                                <select name="search_year" class="date-select" style="width:100px;">
-                                    <option value="">Tahun</option>
-                                    <?php
-                                    $current_year = date('Y');
-                                    for ($year = $current_year; $year >= 2020; $year--) {
-                                        $selected = (isset($_GET['search_year']) && $_GET['search_year'] == $year) ? 'selected' : '';
-                                        echo "<option value='$year' $selected>$year</option>";
-                                    }
-                                    ?>
-                                </select>
+                                <div class="tanggal-group">
+                                    <select name="search_date_start" class="date-select">
+                                        <option value="">Tanggal</option>
+                                        <?php for ($day = 1; $day <= 31; $day++): 
+                                            $day_padded = str_pad($day, 2, '0', STR_PAD_LEFT);
+                                            $selected = (isset($_GET['search_date_start']) && $_GET['search_date_start'] == $day_padded) ? 'selected' : '';
+                                            echo "<option value='$day_padded' $selected>$day_padded</option>";
+                                        endfor; ?>
+                                    </select>
+                                    <select name="search_month" class="date-select">
+                                        <option value="">Bulan</option>
+                                        <?php
+                                        $months = [
+                                            '01' => 'Januari', '02' => 'Februari', '03' => 'Maret', '04' => 'April',
+                                            '05' => 'Mei', '06' => 'Juni', '07' => 'Juli', '08' => 'Agustus',
+                                            '09' => 'September', '10' => 'Oktober', '11' => 'November', '12' => 'Desember'
+                                        ];
+                                        foreach ($months as $num => $name) {
+                                            $selected = (isset($_GET['search_month']) && $_GET['search_month'] == $num) ? 'selected' : '';
+                                            echo "<option value='$num' $selected>$name</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                    <select name="search_year" class="date-select">
+                                        <option value="">Tahun</option>
+                                        <?php
+                                        $current_year = date('Y');
+                                        for ($year = $current_year; $year >= 2020; $year--) {
+                                            $selected = (isset($_GET['search_year']) && $_GET['search_year'] == $year) ? 'selected' : '';
+                                            echo "<option value='$year' $selected>$year</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
                             </td>
                             <td style="width:140px;">
                                 <input type="text" name="search_nama" placeholder="Cari Nama..." value="<?php echo isset($_GET['search_nama']) ? htmlspecialchars($_GET['search_nama']) : ''; ?>">
