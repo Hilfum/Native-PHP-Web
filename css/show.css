@@ -134,110 +134,312 @@ h2 {
     border: 1px solid #ddd;
 }
 
+/* Modern Search Container */
 .search-container {
     width: 100%;
-    margin: 15px 0;
-    overflow: visible;
+    max-width: 100vw;
+    box-sizing: border-box;
+    margin: 18px 0 28px 0;
+    padding: 18px 12px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 4px 24px rgba(0,123,255,0.07);
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Sudah ada, ini untuk vertikal tengah jika tinggi box lebih besar dari konten */
+    min-height: 90px;    /* Tambahkan agar box cukup tinggi untuk middle align */
+    transition: box-shadow 0.2s;
+    overflow-x: auto;
+}
+
+.search-container form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Tengah vertikal */
+    height: 100%;
 }
 
 .search-table {
-    table-layout: fixed;
     width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 10px;
-    border: none !important;
+    min-width: 0;
+    border-collapse: separate;
+    border-spacing: 0 10px;
     background: transparent !important;
     box-shadow: none !important;
+    table-layout: auto;
+    margin: auto; /* Tengah horizontal */
 }
 
-.search-table tr,
+/* Hilangkan border pada tabel search/filter saja */
+.search-table,
+.search-table th,
 .search-table td {
     border: none !important;
     background: transparent !important;
     box-shadow: none !important;
 }
 
+/* Pastikan kolom search tanggal dan alamat WP sama lebar */
 .search-table td {
-    padding: 5px;
-}
-
-.search-table input[type="text"],
-.search-table select {
-    width: 100%;
+    min-width: 220px;
+    max-width: 220px;
+    width: 220px;
     box-sizing: border-box;
-    padding: 6px 8px;
+    padding: 0 8px;
+    vertical-align: middle;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+/* Pastikan semua input dan select di search-table full width */
+.search-table select,
+.search-table input[type="text"] {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    height: 40px; /* atau sesuaikan dengan input lain */
+    padding: 8px 36px 8px 12px;
     font-size: 1em;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    min-width: 90px;
-    height: 36px;
+    border-radius: 6px;
+    border: 1.5px solid #cce0ff;
+    background: #fff;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.search-table button[type="submit"],
-.search-btn-big {
-    width: 100%;
-    height: 100%;
-    min-height: 80px;
-    font-size: 1.2em;
-    font-weight: bold;
-    background: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 7px;
-    cursor: pointer;
-    transition: background 0.2s;
+/* Jika handler select di dalam flex container */
+.search-table td > div > select {
+    height: 40px !important;
+    padding: 8px 36px 8px 12px !important;
+    font-size: 1em !important;
+    border-radius: 6px !important;
+}
+
+/* Pastikan select handler dan button Cari di sampingnya benar-benar sejajar */
+.search-table td > div {
+    display: flex;
+    align-items: stretch; /* Biar tinggi select dan button sama */
+    gap: 8px;
+}
+
+.search-table td > div > select,
+.search-table td > div > button {
+    height: 40px !important;
+    padding: 8px 12px !important;
+    font-size: 1em !important;
+    border-radius: 6px !important;
     box-sizing: border-box;
+    margin: 0 !important;
     display: block;
 }
 
-.search-table button[type="submit"]:hover,
-.search-btn-big:hover {
-    background: #0056b3;
+.search-table td > div > button {
+    min-width: 90px;
+    padding: 0 18px !important;
+    font-weight: bold;
+    border: none;
+    background: linear-gradient(90deg, #007bff 0%, #00c6ff 100%);
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(0,123,255,0.10);
 }
 
-@media (max-width: 900px) {
-    .search-table input[type="text"],
-    .search-table select {
-        font-size: 0.95em;
-        padding: 5px 6px;
-    }
-    .search-btn-big {
-        min-height: 60px;
-        font-size: 1em;
-    }
-    .table-container {
-        max-width: 100vw;
-        padding: 0;
-    }
-    table {
-        min-width: 600px;
-        font-size: 0.95em;
-    }
+.search-table td > div > button:hover {
+    background: linear-gradient(90deg, #00c6ff 0%, #007bff 100%);
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 6px 16px rgba(0,123,255,0.18);
 }
 
-/* Table data styles */
-table {
-    min-width: 900px; /* atau sesuai kebutuhan */
+.tanggal-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background: #f5f8ff;
+    border-radius: 8px;
+    padding: 4px 8px;
+    box-shadow: 0 1px 4px rgba(0,123,255,0.04);
+}
+
+.tanggal-group select {
+    min-width: 0;
     width: 100%;
-    max-width: 1600px; /* atau sesuai kebutuhan */
-    border-collapse: collapse;
+    max-width: 220px;
+    box-sizing: border-box;
+    padding: 8px 36px 8px 12px;
+    font-size: 1em;
+    margin-bottom: 0;
+    border-radius: 6px;
+    border: 1px solid #cce0ff;
+    background: #fff;
+    transition: border-color 0.2s;
+}
+.tanggal-group select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.search-table input[type="text"] {
+    border-radius: 6px;
+    border: 1px solid #cce0ff;
+    background: #fff;
+    padding: 7px 10px;
+    font-size: 1em;
+    transition: border-color 0.2s;
+    box-shadow: 0 1px 4px rgba(0,123,255,0.04);
+}
+.search-table input[type="text"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Dropdown modern untuk filter search */
+.tanggal-group select,
+.search-table select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-radius: 6px;
+    border: 1.5px solid #cce0ff;
+    background: #fff url('data:image/svg+xml;utf8,<svg fill="gray" height="18" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 12px center/18px 18px;
+    padding: 8px 36px 8px 12px;
+    font-size: 1em;
+    color: #222;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 4px rgba(0,123,255,0.04);
+    cursor: pointer;
+    outline: none;
+}
+
+.tanggal-group select:focus,
+.search-table select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0,123,255,0.13);
+}
+
+.tanggal-group select:hover,
+.search-table select:hover {
+    border-color: #007bff;
+    background-color: #f0f7ff;
+}
+
+/* Dropdown animasi interaktif */
+.tanggal-group select,
+.search-table select {
+    transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+/* Search Button Modern */
+.search-table button[type="submit"], .search-btn-big {
+    background: linear-gradient(90deg, #007bff 0%, #00c6ff 100%);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 22px;
+    font-size: 1.08em;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,123,255,0.10);
+    transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+    min-width: 120px;
+    margin-left: 8px;
+    margin-right: 0;
+    display: inline-block;
+}
+.search-table button[type="submit"]:hover, .search-btn-big:hover {
+    background: linear-gradient(90deg, #00c6ff 0%, #007bff 100%);
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 6px 16px rgba(0,123,255,0.18);
+}
+
+/* Agar tombol Cari di dalam td handler tetap proporsional */
+.search-btn-big {
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    margin-left: 0;
+}
+@media (max-width: 700px) {
+    .search-btn-big {
+        margin-top: 10px;
+        width: 100%;
+    }
+}
+
+/* Responsive Search */
+@media (max-width: 900px) {
+    .search-container {
+        padding: 10px 2vw;
+    }
+    .search-table td {
+        padding: 4px 0;
+    }
+    .tanggal-group {
+        gap: 6px;
+        padding: 2px 4px;
+    }
+    .search-table button[type="submit"], .search-btn-big {
+        min-width: 80px;
+        font-size: 1em;
+        padding: 8px 10px;
+    }
+}
+@media (max-width: 600px) {
+    .search-container {
+        flex-direction: column;
+        padding: 8px 1vw;
+    }
+    .search-table {
+        width: 100%;
+        font-size: 0.97em;
+    }
+    .tanggal-group {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+    }
+    .tanggal-group select,
+    .search-table select,
+    .search-table input[type="text"] {
+        min-width: 0;
+        width: 100%;
+        font-size: 0.98em;
+        padding: 10px 36px 10px 12px;
+    }
+    .search-table td {
+        min-width: 0;
+        max-width: 100vw;
+        width: 100%;
+        padding: 4px 0;
+    }
+}
+
+table {
+    min-width: 900px;
+    width: 100%;
+    max-width: 1600px;
+    border-collapse: collapse; /* Ganti ke collapse agar border kotak rapi */
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     background-color: #fff;
-    border: 1px solid #ddd;
+    border: 1px solid #e6e6e6; /* Tambahkan border utama */
     margin-top: 20px;
 }
 
 th, td {
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #e6e6e6; /* Tampilkan border kotak */
     text-align: left;
     vertical-align: middle;
 }
 
+/* Jika ingin header tetap menonjol */
 th {
     background-color: #007bff;
     color: white;
     text-align: center;
+    border-bottom: 2px solid #007bff;
 }
 
 td.nama-wajib-pajak {
@@ -553,7 +755,7 @@ td.kelurahan-objek-pajak, td.kecamatan-objek-pajak {
     animation: fadeOutPage 0.6s forwards;
 }
 .page-fade-in {
-    animation: fadeInPage 0.6s;
+    animation: fadeInSlideDown 0.6s cubic-bezier(.4,0,.2,1);
 }
 @keyframes fadeOutPage {
     to {
@@ -562,42 +764,55 @@ td.kelurahan-objek-pajak, td.kecamatan-objek-pajak {
         filter: blur(2px);
     }
 }
-@keyframes fadeInPage {
+@keyframes fadeInSlideUp {
     from {
         opacity: 0;
-        transform: scale(0.98);
-        filter: blur(2px);
+        transform: translateY(32px);
     }
     to {
         opacity: 1;
-        transform: scale(1);
-        filter: blur(0);
+        transform: translateY(0);
+    }
+}
+@keyframes fadeInSlideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-32px); /* Geser dari atas ke bawah */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-/* Tanggal group styles */
-.tanggal-group {
-    display: flex;
-    gap: 1vw;
-    align-items: center;
+/* Hanya untuk tabel data utama */
+.data-table {
+    border-collapse: collapse;
     width: 100%;
-    min-width: 0;
+    background-color: #fff;
+    border: 1px solid #e6e6e6;
+    margin-top: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
-.tanggal-group select {
-    flex: 1 1 0;
-    min-width: 0;
-    padding: 6px 8px;
-    font-size: 1em;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
+
+.data-table th, .data-table td {
+    padding: 10px;
+    border: 1px solid #e6e6e6;
+    text-align: left;
+    vertical-align: middle;
 }
-@media (max-width: 600px) {
-    .tanggal-group {
-        gap: 2vw;
-    }
-    .tanggal-group select {
-        font-size: 0.97em;
-        padding: 5px 6px;
-    }
+
+/* Semua judul label di tabel data rata tengah */
+.data-table th {
+    text-align: center;
+}
+
+.data-table td.tanggal-masuk {
+    text-align: center;
+}
+
+.data-table td.tanggal-masuk,
+.data-table td.tipe-berkas,
+.data-table td.handler {
+    text-align: center;
 }

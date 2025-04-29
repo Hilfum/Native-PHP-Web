@@ -250,9 +250,11 @@ if (!$result) {
                             <td style="width:120px;">
                                 <input type="text" name="search_kecamatan" placeholder="Cari Kecamatan..." value="<?php echo isset($_GET['search_kecamatan']) ? htmlspecialchars($_GET['search_kecamatan']) : ''; ?>">
                             </td>
+                            <?php if ($_SESSION['role'] !== 'monitoring'): ?>
                             <td rowspan="2" style="vertical-align:top;width:90px;">
                                 <button type="submit" class="search-btn-big" style="height:100%;">Cari</button>
                             </td>
+                            <?php endif; ?>
                         </tr>
                         <tr>
                             <td style="width:170px;">
@@ -279,16 +281,19 @@ if (!$result) {
                             </td>
                             <?php if ($_SESSION['role'] === 'monitoring'): ?>
                             <td style="width:120px;">
-                                <select name="search_handler" style="width:100%;">
-                                    <option value="">Handler</option>
-                                    <?php
-                                    $handlers = ['loket', 'verlap', 'penetapan', 'kabid', 'bphtb', 'op_baru', 'mutasi1', 'mutasi2'];
-                                    foreach ($handlers as $handler) {
-                                        $selected = (isset($_GET['search_handler']) && $_GET['search_handler'] == $handler) ? 'selected' : '';
-                                        echo "<option value='$handler' $selected>" . ucfirst($handler) . "</option>";
-                                    }
-                                    ?>
-                                </select>
+                                <div style="display:flex;gap:8px;">
+                                    <select name="search_handler" style="width:60%;">
+                                        <option value="">Handler</option>
+                                        <?php
+                                        $handlers = ['loket', 'verlap', 'penetapan', 'kabid', 'bphtb', 'op_baru', 'mutasi1', 'mutasi2'];
+                                        foreach ($handlers as $handler) {
+                                            $selected = (isset($_GET['search_handler']) && $_GET['search_handler'] == $handler) ? 'selected' : '';
+                                            echo "<option value='$handler' $selected>" . ucfirst($handler) . "</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                    <button type="submit" class="search-btn-big" style="width:40%;">Cari</button>
+                                </div>
                             </td>
                             <?php endif; ?>
                         </tr>
@@ -296,7 +301,7 @@ if (!$result) {
                 </form>
             </div>
 
-            <table>
+            <table class="data-table">
                 <thead>
                     <tr>
                         <th>Tanggal Masuk</th>
@@ -322,7 +327,7 @@ if (!$result) {
                                 <?php
                                 if (!empty($row['tanggal_masuk'])) {
                                     $tanggal = new DateTime($row['tanggal_masuk']);
-                                    echo $tanggal->format('d-m-Y H:i');
+                                    echo $tanggal->format('d-m-Y');
                                 } else {
                                     echo '-';
                                 }
@@ -349,7 +354,7 @@ if (!$result) {
                                 <?php endif; ?>
                             </td>
                             <?php if ($_SESSION['role'] === 'monitoring'): ?>
-                                <td>
+                                <td class="handler">
                                     <?php
                                     echo isset($row['current_handler']) && $row['current_handler']
                                         ? htmlspecialchars(keterangan_handler($row['current_handler']))
