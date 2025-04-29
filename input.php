@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
     <title>Input Data Berkas</title>
     <link rel="stylesheet" href="css/input.css">
 </head>
@@ -152,7 +152,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="tanggal_masuk" style="margin-top:10px;">Tanggal Masuk Berkas</label>
             <div class="input-date-group">
                 <span class="calendar-icon">&#128197;</span>
-                <input type="date" id="tanggal_masuk" name="tanggal_masuk" required>
+                <input type="date" id="tanggal_masuk" name="tanggal_masuk" required
+                       value="<?php echo date('Y-m-d'); ?>">
             </div>
 
             <div class="button-group">

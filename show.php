@@ -230,7 +230,9 @@ if (!$result) {
                                         <option value="">Tahun</option>
                                         <?php
                                         $current_year = date('Y');
-                                        for ($year = $current_year; $year >= 2020; $year--) {
+                                        $min_year = $current_year - 99; // 100 tahun ke belakang
+                                        $max_year = $current_year + 100; // 100 tahun ke depan
+                                        for ($year = $max_year; $year >= $min_year; $year--) {
                                             $selected = (isset($_GET['search_year']) && $_GET['search_year'] == $year) ? 'selected' : '';
                                             echo "<option value='$year' $selected>$year</option>";
                                         }
