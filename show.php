@@ -168,8 +168,9 @@ if (!$result) {
             </div>
             <div class="hamburger-dropdown" id="hamburgerDropdown">
                 <div class="menu-row">
-                    <div class="user-info">
-                        Login sebagai: <b><?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?></b>
+                    <div class="user-info highlight-user">
+                        <span class="user-label">👤 Login sebagai:</span>
+                        <span class="user-name"><?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?></span>
                     </div>
                     <a href="#" class="logout-button" onclick="handleLogout(event)">
                         Keluar (Logout)
@@ -326,7 +327,7 @@ if (!$result) {
                 <tbody>
                     <?php while ($row = mysqli_fetch_assoc($result)): ?>
                         <tr>
-                            <td class="tanggal-masuk">
+                            <td class="tanggal-masuk" data-label="Tanggal Masuk">
                                 <?php
                                 if (!empty($row['tanggal_masuk'])) {
                                     $tanggal = new DateTime($row['tanggal_masuk']);
@@ -366,8 +367,17 @@ if (!$result) {
                                 </td>
                             <?php else: ?>
                                 <td>
-                                    <a href="edit.php?id=<?php echo $row['id']; ?>" class="btn-edit">Edit</a>
-                                    <a href="delete.php?id=<?php echo $row['id']; ?>" class="btn-delete" onclick="return confirm('Hapus data ini?')">Hapus</a>
+                                    <a href="edit.php?id=<?php echo $row['id']; ?>" class="btn-edit" title="Edit">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
+                                            <path fill="currentColor" d="M16.477 3.004c.167.015.24.219.12.338l-8.32 8.32a.75.75 0 0 0-.195.34l-1 3.83a.75.75 0 0 0 .915.915l3.829-1a.75.75 0 0 0 .34-.196l8.438-8.438a.198.198 0 0 1 .339.12a45.7 45.7 0 0 1-.06 10.073c-.223 1.905-1.754 3.4-3.652 3.613a47.5 47.5 0 0 1-10.461 0c-1.899-.213-3.43-1.708-3.653-3.613a45.7 45.7 0 0 1 0-10.611C3.34 4.789 4.871 3.294 6.77 3.082a47.5 47.5 0 0 1 9.707-.078"/>
+                                            <path fill="currentColor" d="M17.823 4.237a.25.25 0 0 1 .354 0l1.414 1.415a.25.25 0 0 1 0 .353L11.298 14.3a.25.25 0 0 1-.114.065l-1.914.5a.25.25 0 0 1-.305-.305l.5-1.914a.25.25 0 0 1 .065-.114z"/>
+                                        </svg>
+                                    </a>
+                                    <form action="delete.php?id=<?php echo $row['id']; ?>" method="POST" style="display:inline;" onsubmit="return confirm('Hapus data ini?')">
+                                        <button type="submit" class="btn-delete" title="Hapus">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 448 512"><path fill="currentColor" d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0h120.4c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64s14.3-32 32-32h96zM32 128h384v320c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64zm96 64c-8.8 0-16 7.2-16 16v224c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16m96 0c-8.8 0-16 7.2-16 16v224c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16m96 0c-8.8 0-16 7.2-16 16v224c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16"/></svg>
+                                        </button>
+                                    </form>
                                     <?php if (strtolower($row['status']) !== 'selesai'): ?>
                                         <form action="confirm.php" method="POST" style="display:inline;" onsubmit="return handleConfirm(event, this);">
                                             <input type="hidden" name="id" value="<?php echo $row['id']; ?>">

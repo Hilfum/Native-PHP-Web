@@ -238,13 +238,24 @@ button[type="submit"]:hover {
     flex-direction: column;
     gap: 0;
     box-sizing: border-box;
-    height: 70px; /* Sama dengan height header */
-    min-height: 70px;
-    max-height: 70px;
+    height: auto !important;
+    min-height: 70px !important;
+    max-height: none !important;
     overflow: hidden;
     display: flex;
     align-items: center;
     padding: 0 16px;
+    box-sizing: border-box;
+}
+.hamburger-dropdown .menu-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: auto !important;
+    min-height: 70px !important;
+    max-height: none !important;
     box-sizing: border-box;
 }
 .hamburger-dropdown .user-info {
@@ -298,16 +309,6 @@ button[type="submit"]:hover {
 }
 .hamburger-menu-header {
     display: none;
-}
-.hamburger-dropdown .menu-row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    height: 100%;
-    min-height: 70px;
-    box-sizing: border-box;
 }
 
 .menu-overlay {
@@ -469,4 +470,28 @@ button[type="submit"]:hover {
         transform: translateY(-32px);
         filter: blur(2px);
     }
+}
+
+/* Highlight user styles */
+.highlight-user {
+    background: linear-gradient(90deg, #e3f0ff 0%, #f7faff 100%);
+    padding: 8px 18px;
+    border-radius: 16px;
+    font-weight: 500;
+    font-size: 1.08em;
+    color: #1565c0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 8px rgba(21,101,192,0.07);
+}
+.user-label {
+    font-weight: 600;
+    color: #1976d2;
+    margin-right: 4px;
+}
+.user-name {
+    font-weight: bold;
+    color: #0d47a1;
+    letter-spacing: 0.5px;
 }

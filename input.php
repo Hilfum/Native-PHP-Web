@@ -89,8 +89,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="hamburger-dropdown" id="hamburgerDropdown">
                 <button class="close-hamburger" onclick="closeMenu(event)" aria-label="Tutup">&#10005;</button>
                 <div class="menu-row">
-                    <div class="user-info">
-                        Login sebagai: <b><?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?></b>
+                    <div class="user-info highlight-user">
+                        <span class="user-label">👤 Login sebagai:</span>
+                        <span class="user-name"><?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?></span>
                     </div>
                     <a href="#" class="logout-button" onclick="handleLogout(event)">
                         Keluar (Logout)
