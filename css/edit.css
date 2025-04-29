@@ -1,13 +1,14 @@
 body.input-body {
-    height: 100vh;
-    overflow: hidden; /* Tidak bisa scroll body */
+    min-width: 0;
+    min-height: 100vh;
+    overflow-x: auto;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    min-height: 100vh;
     margin: 0;
-    padding-top: 80px;
+    padding-top: 0;
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
 }
@@ -42,24 +43,30 @@ body.input-body {
 }
 
 .header h2 {
-    margin: 0;
-    font-size: 24px;             /* px, bukan em/rem */
+    font-size: 1.3em;
     font-weight: bold;
     color: white;
+    margin: 0;
+}
+
+.logout-button {
+    background-color: #ff4d4d;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
 }
 
 .container-input {
     width: 100%;
-    max-width: 600px; /* Perlebar form agar label tipe berkas muat satu baris */
+    max-width: 600px;
     min-width: 0;
     height: auto;
-    max-height: calc(100vh - 120px); /* Header + margin */
-    overflow: visible;          /* Tidak scroll, semua muat */
-    padding: 24px 28px 20px 28px; /* Tambah padding agar lebih lega */
+    padding: 32px 28px 28px 28px; /* Perbesar padding atas, kanan, bawah, kiri */
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
     background-color: #fff;
     border-radius: 10px;
-    margin: 18px auto 0 auto;
+    margin: 90px auto 0 auto;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -67,6 +74,7 @@ body.input-body {
     gap: 10px;
     position: relative;
     z-index: 1;
+    overflow: visible; /* Pastikan tidak ada overflow hidden/auto di sini */
 }
 
 .container-input h2 {
@@ -122,7 +130,8 @@ body.input-body {
     text-align: center;
 }
 
-button[type="submit"] {
+button[type="submit"],
+.button-secondary-input {
     min-width: 90px;
     padding: 8px 12px;
     background-color: #0088ff;
@@ -132,40 +141,64 @@ button[type="submit"] {
     cursor: pointer;
 }
 
+.button-secondary-input {
+    background-color: #6c757d;
+}
+
+.button-secondary-input:hover {
+    background-color: #5a6268;
+}
+
 button[type="submit"]:hover {
     background-color: #0066cc;
 }
 
 .input-date-group {
     display: flex;
-    align-items: center;
+    align-items: stretch;   /* Bukan center, agar semua child sama tinggi */
+    gap: 8px;
     margin-bottom: 8px;
 }
+
 .input-date-group .calendar-icon {
-    font-size: 1.2em;
-    margin-right: 6px;
+    font-size: 1.2em;      /* Atur agar proporsional, bisa diubah sesuai selera */
     color: #3498db;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 38px;          /* Samakan dengan input */
+    width: 38px;           /* Biar kotak dan rata tengah */
+    background: #eaf6fb;   /* Opsional: beri latar belakang agar tampak kotak */
+    border-radius: 6px;    /* Opsional: sudut membulat */
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
+
 .input-date-group input[type="date"] {
     padding: 6px 8px;
-    font-size: 0.98em;
+    font-size: 1em;
     border-radius: 6px;
     border: 1px solid #ccc;
     transition: border-color 0.2s;
-}
-.input-date-group input[type="date"]:focus {
-    border-color: #3498db;
-    outline: none;
+    height: 38px;
+    box-sizing: border-box;
 }
 
 @media (max-width: 600px) {
     .container-input {
-        max-width: 98vw;
-        padding: 10px 4vw;
-        font-size: 0.97em;
+        max-width: 100vw;
+        padding: 18px 5vw 18px 5vw; /* Padding samping tetap nyaman di layar kecil */
+        margin: 80px 0 0 0;
+    }
+    .input-date-group {
+        flex-direction: column;
+        gap: 4px;
+        align-items: stretch;
     }
     .checkbox-group {
-        gap: 6px 8px;
+        grid-template-columns: 1fr;
+        gap: 6px 0;
         font-size: 0.96em;
     }
     .header h2 { font-size: 1em; }
@@ -189,7 +222,7 @@ button[type="submit"]:hover {
     }
 }
 
-/* Tombol utama */
+/* Tombol utama dengan animasi */
 .button-animated {
     background: linear-gradient(90deg, #007bff 0%, #00c6ff 100%);
     color: #fff;
@@ -217,7 +250,7 @@ button[type="submit"]:hover {
     box-shadow: 0 2px 8px rgba(0,123,255,0.10);
 }
 
-/* Tombol sekunder */
+/* Tombol sekunder dengan animasi */
 .button-secondary-animated {
     background: linear-gradient(90deg, #ff7e5f 0%, #feb47b 100%);
     color: #fff;
@@ -250,7 +283,7 @@ button[type="submit"]:hover {
 /* Samakan sudut kedua tombol */
 .button-animated,
 .button-secondary-animated {
-    border-radius: 12px; /* atau sesuai nilai yang Anda pakai */
+    border-radius: 12px;
 }
 
 /* Hilangkan garis bawah pada link "Lihat Data" */
