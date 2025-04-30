@@ -39,6 +39,7 @@ body.show-body {
     left: 0;
     z-index: 2200;
     overflow: hidden;
+    box-shadow: 0 4px 18px rgba(21, 101, 192, 0.13);
 }
 
 .logo-container {

@@ -38,6 +38,7 @@ body.input-body::-webkit-scrollbar, html::-webkit-scrollbar {
     left: 0;
     z-index: 2000; /* PALING ATAS */
     overflow: hidden;
+    box-shadow: 0 4px 18px rgba(21, 101, 192, 0.13);
 }
 
 .logo-container {
