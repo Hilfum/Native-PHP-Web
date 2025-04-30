@@ -319,7 +319,7 @@ if (!$result) {
                         <?php endif; ?>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="dataTbody">
                     <?php while ($row = mysqli_fetch_assoc($result)): ?>
                         <tr>
                             <td class="tanggal-masuk" data-label="Tanggal Masuk">

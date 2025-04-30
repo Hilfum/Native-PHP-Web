@@ -94,15 +94,22 @@ window.addEventListener('DOMContentLoaded', function() {
 
 const slider = document.getElementById("entries");
 const valueDisplay = document.getElementById("entryValue");
+const dataTbody = document.getElementById("dataTbody");
 
 slider.addEventListener("input", () => {
     valueDisplay.textContent = slider.value;
 });
 
 slider.addEventListener("change", () => {
-    // Reload halaman dengan parameter entries baru
-    const url = new URL(window.location.href);
-    url.searchParams.set('entries', slider.value);
-    url.searchParams.set('page', 1); // reset ke halaman 1
-    window.location.href = url.toString();
+    const params = new URLSearchParams(window.location.search);
+    params.set('entries', slider.value);
+    params.set('page', 1);
+    dataTbody.style.opacity = 0.4;
+    fetch('show_data.php?' + params.toString())
+        .then(res => res.text())
+        .then(html => {
+            dataTbody.innerHTML = html;
+            dataTbody.style.transition = "opacity 0.4s";
+            dataTbody.style.opacity = 1;
+        });
 });
