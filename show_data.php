@@ -1,5 +1,11 @@
 <?php
+// Cek login di setiap halaman utama
 session_start();
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit();
+}
+
 include 'koneksi.php';
 
 function formatNOP($nop) {
