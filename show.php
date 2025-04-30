@@ -4,7 +4,6 @@ if (!isset($_SESSION['username'])) {
     header("Location: login.php");
     exit();
 }
-session_start(); // Tambahkan ini di baris paling atas
 include 'koneksi.php';
 
 // Tambahkan fungsi ini di bagian atas file setelah include
