@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <button class="close-hamburger" onclick="closeMenu(event)" aria-label="Tutup">&#10005;</button>
                 <div class="menu-row">
                     <div class="user-info highlight-user">
-                        <span class="user-label">👤 Login sebagai:</span>
+                        <span class="user-label">👤 Login sebagai :</span>
                         <?php
                         $role_labels = [
                             'petugas_loket' => 'Petugas Loket',

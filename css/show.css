@@ -791,24 +791,27 @@ td.kelurahan-objek-pajak, td.kecamatan-objek-pajak {
     transition: opacity 0.25s, transform 0.25s;
     position: fixed;
     left: 0;
-    top: 70px;
-    width: 100vw;
+    top: 70px; /* tepat di bawah header */
+    width: 100vw; /* Selalu selebar viewport */
     max-width: 100vw;
     min-width: 0;
-    background: #007bff;
-    border-radius: 0;
+    background: #007bff; /* Sama dengan warna header */
+    border-radius: 0; /* Sudut kotak */
     box-shadow: 0 8px 32px rgba(0,0,0,0.10);
-    z-index: 2100;
+    z-index: 1500;
     padding: 0 16px 18px 16px;
     display: flex;
     flex-direction: column;
     gap: 0;
     box-sizing: border-box;
-    height: 70px;
-    min-height: 70px;
-    max-height: 70px;
+    height: auto !important;
+    min-height: 70px !important;
+    max-height: none !important;
     overflow: hidden;
+    display: flex;
     align-items: center;
+    padding: 0 16px;
+    box-sizing: border-box;
 }
 .hamburger-menu-container.active .hamburger-dropdown {
     pointer-events: auto;
@@ -821,9 +824,10 @@ td.kelurahan-objek-pajak, td.kecamatan-objek-pajak {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    height: 100%;
-    min-height: 70px;
     width: 100%;
+    height: auto !important;
+    min-height: 70px !important;
+    max-height: none !important;
     box-sizing: border-box;
 }
 .hamburger-dropdown .user-info {
@@ -837,7 +841,7 @@ td.kelurahan-objek-pajak, td.kecamatan-objek-pajak {
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 60vw;
-    margin-bottom: 10px;
+    height: 100%;
 }
 .hamburger-dropdown .logout-button {
     display: flex;
@@ -1035,4 +1039,9 @@ td.kelurahan-objek-pajak, td.kecamatan-objek-pajak {
 #tableArea {
     transition: opacity 0.3s, transform 0.3s;
     will-change: opacity, transform;
+}
+
+.hamburger-dropdown .user-info .user-name {
+    position: relative;
+    top: 2px;
 }
