@@ -9,13 +9,20 @@
 <body>
     <div class="overlay"></div>
     <div class="container" id="mainContainer">
-        <div class="logo-row">
-            <img src="gambar/Lambang_Kota_Kendari.png" alt="Logo Kota Kendari" class="logo-kendari">
-            <img src="gambar/logo_jakpa-removebg-preview.png" alt="Logo Besar" class="logo-besar">
+        <div class="content-wrapper">
+            <div class="logo-row">
+                <img src="gambar/Lambang_Kota_Kendari.png" alt="Logo Kota Kendari" class="logo-kendari">
+                <img src="gambar/logo_jakpa-removebg-preview.png" alt="Logo Besar" class="logo-besar">
+            </div>
+            <div class="text-content">
+                <h1>Selamat Datang</h1>
+                <h2>Website Pengimputan Data Pajak<br>Bapenda Kota Kendari</h2>
+            </div>
+            <a href="login.php" class="login-button" id="loginBtn">
+                <span class="button-text">Masuk</span>
+                <span class="button-icon">→</span>
+            </a>
         </div>
-        <h1>Selamat Datang</h1>
-        <h2>Website Pengimputan Data Pajak Bapenda Kota Kendari</h2>
-        <a href="login.php" class="login-button" id="loginBtn">Masuk</a>
     </div>
     <script src="javascript/index.js"></script>
 </body>
