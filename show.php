@@ -266,11 +266,16 @@ if (!$result) {
                                 </select>
                             </td>
                             <td style="width:120px;">
+                                <?php
+                                $allowed_status_roles = ['bphtb', 'op_baru', 'mutasi1', 'mutasi2', 'monitoring'];
+                                if (in_array($_SESSION['role'], $allowed_status_roles)):
+                                ?>
                                 <select name="search_status" style="width:100%;">
                                     <option value="">Status...</option>
                                     <option value="Pending" <?php echo (isset($_GET['search_status']) && $_GET['search_status'] == 'Pending') ? 'selected' : ''; ?>>Pending</option>
                                     <option value="Selesai" <?php echo (isset($_GET['search_status']) && $_GET['search_status'] == 'Selesai') ? 'selected' : ''; ?>>Selesai</option>
                                 </select>
+                                <?php endif; ?>
                             </td>
                             <?php if ($_SESSION['role'] === 'monitoring'): ?>
                             <td style="width:120px;">
