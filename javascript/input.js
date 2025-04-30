@@ -84,3 +84,13 @@ window.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    var container = document.querySelector('.container-input');
+    if (container) {
+        // Trigger reflow for transition
+        setTimeout(function() {
+            container.classList.add('show');
+        }, 10);
+    }
+});

@@ -84,6 +84,13 @@ body.input-body::-webkit-scrollbar, html::-webkit-scrollbar {
     position: relative;
     z-index: 1;
     overflow: visible; /* Pastikan tidak ada overflow hidden/auto di sini */
+    opacity: 0;
+    transform: translateY(-30px);
+    transition: opacity 0.4s, transform 0.4s;
+}
+.container-input.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .container-input h2 {
