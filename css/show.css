@@ -349,18 +349,16 @@ input[type="range"]::-moz-range-thumb {
     padding: 8px 36px 8px 12px;
     font-size: 1em;
     color: #222;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
     box-shadow: 0 1px 4px rgba(0,123,255,0.04);
     cursor: pointer;
     outline: none;
 }
-
 .tanggal-group select:focus,
 .search-table select:focus {
     border-color: #007bff;
     box-shadow: 0 0 0 2px rgba(0,123,255,0.13);
 }
-
 .tanggal-group select:hover,
 .search-table select:hover {
     border-color: #007bff;
@@ -461,6 +459,10 @@ input[type="range"]::-moz-range-thumb {
         width: 100%;
         padding: 4px 0;
     }
+    .header h2 { font-size: 1.1em; }
+    .hamburger-dropdown { min-width: 140px; font-size: 0.95em; }
+    .hamburger-dropdown .user-info { max-width: 48vw; font-size: 0.97em; }
+    .hamburger-dropdown .logout-button { max-width: 40vw; font-size: 0.97em; padding: 8px 10px; }
 }
 
 table {
