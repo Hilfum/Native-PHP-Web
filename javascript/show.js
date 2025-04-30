@@ -143,4 +143,36 @@ document.addEventListener('DOMContentLoaded', function() {
                 }, 200);
             });
     }
+
+    // Event untuk form search/filter AJAX
+    const searchForm = document.querySelector('.search-container form');
+    if (searchForm) {
+        searchForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(searchForm);
+            const params = new URLSearchParams(formData);
+            // Tambahkan entries dan page
+            params.set('entries', document.getElementById('entries').value);
+            params.set('page', 1);
+            const tableArea = document.getElementById('tableArea');
+            // Animasi slide up
+            tableArea.style.opacity = 0;
+            tableArea.style.transform = "translateY(-30px)";
+            fetch('show_data.php?' + params.toString())
+                .then(res => res.text())
+                .then(html => {
+                    setTimeout(() => {
+                        tableArea.innerHTML = html;
+                        // Reset dan animasi slide down
+                        tableArea.style.transition = "none";
+                        tableArea.style.opacity = 0;
+                        tableArea.style.transform = "translateY(-30px)";
+                        void tableArea.offsetWidth;
+                        tableArea.style.transition = "opacity 0.3s, transform 0.3s";
+                        tableArea.style.opacity = 1;
+                        tableArea.style.transform = "translateY(0)";
+                    }, 200);
+                });
+        });
+    }
 });
