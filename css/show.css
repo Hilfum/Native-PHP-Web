@@ -1031,3 +1031,8 @@ td.kelurahan-objek-pajak, td.kecamatan-objek-pajak {
 #dataTbody {
     transition: opacity 0.4s;
 }
+
+#tableArea {
+    transition: opacity 0.3s, transform 0.3s;
+    will-change: opacity, transform;
+}

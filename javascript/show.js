@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const valueDisplay = document.getElementById("entryValue");
     const tableArea = document.getElementById("tableArea");
 
-    // Slider event
+    // Untuk slider
     slider.addEventListener("input", () => {
         valueDisplay.textContent = slider.value;
     });
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
         loadTable(1, slider.value);
     });
 
-    // Pagination event (delegation)
+    // Untuk pagination (delegasi event)
     tableArea.addEventListener('click', function(e) {
         if (e.target.classList.contains('page-link')) {
             e.preventDefault();
@@ -121,12 +121,26 @@ document.addEventListener('DOMContentLoaded', function() {
         const params = new URLSearchParams(window.location.search);
         params.set('page', page);
         params.set('entries', entries);
-        tableArea.style.opacity = 0.4;
+
+        // Slide up (hilang ke atas)
+        tableArea.style.opacity = 0;
+        tableArea.style.transform = "translateY(-30px)";
+
         fetch('show_data.php?' + params.toString())
             .then(res => res.text())
             .then(html => {
-                tableArea.innerHTML = html;
-                tableArea.style.opacity = 1;
+                setTimeout(() => {
+                    tableArea.innerHTML = html;
+                    // Slide down (muncul dari atas)
+                    tableArea.style.transition = "none";
+                    tableArea.style.opacity = 0;
+                    tableArea.style.transform = "translateY(-30px)";
+                    // Force reflow
+                    void tableArea.offsetWidth;
+                    tableArea.style.transition = "opacity 0.3s, transform 0.3s";
+                    tableArea.style.opacity = 1;
+                    tableArea.style.transform = "translateY(0)";
+                }, 200);
             });
     }
 });
