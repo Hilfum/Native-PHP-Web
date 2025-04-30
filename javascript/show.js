@@ -92,24 +92,41 @@ window.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-const slider = document.getElementById("entries");
-const valueDisplay = document.getElementById("entryValue");
-const dataTbody = document.getElementById("dataTbody");
+document.addEventListener('DOMContentLoaded', function() {
+    const slider = document.getElementById("entries");
+    const valueDisplay = document.getElementById("entryValue");
+    const tableArea = document.getElementById("tableArea");
 
-slider.addEventListener("input", () => {
-    valueDisplay.textContent = slider.value;
-});
+    // Slider event
+    slider.addEventListener("input", () => {
+        valueDisplay.textContent = slider.value;
+    });
 
-slider.addEventListener("change", () => {
-    const params = new URLSearchParams(window.location.search);
-    params.set('entries', slider.value);
-    params.set('page', 1);
-    dataTbody.style.opacity = 0.4;
-    fetch('show_data.php?' + params.toString())
-        .then(res => res.text())
-        .then(html => {
-            dataTbody.innerHTML = html;
-            dataTbody.style.transition = "opacity 0.4s";
-            dataTbody.style.opacity = 1;
-        });
+    slider.addEventListener("change", () => {
+        loadTable(1, slider.value);
+    });
+
+    // Pagination event (delegation)
+    tableArea.addEventListener('click', function(e) {
+        if (e.target.classList.contains('page-link')) {
+            e.preventDefault();
+            const url = new URL(e.target.href, window.location.origin);
+            const page = url.searchParams.get('page') || 1;
+            const entries = slider.value;
+            loadTable(page, entries);
+        }
+    });
+
+    function loadTable(page, entries) {
+        const params = new URLSearchParams(window.location.search);
+        params.set('page', page);
+        params.set('entries', entries);
+        tableArea.style.opacity = 0.4;
+        fetch('show_data.php?' + params.toString())
+            .then(res => res.text())
+            .then(html => {
+                tableArea.innerHTML = html;
+                tableArea.style.opacity = 1;
+            });
+    }
 });
