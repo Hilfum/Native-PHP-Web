@@ -169,8 +169,22 @@ if (!$result) {
             <div class="hamburger-dropdown" id="hamburgerDropdown">
                 <div class="menu-row">
                     <div class="user-info highlight-user">
-                        <span class="user-label">👤 Login sebagai:</span>
-                        <span class="user-name"><?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?></span>
+                        <span class="user-label">👤 Login Sebagai :</span>
+                        <?php
+                        $role_labels = [
+                            'petugas_loket' => 'Petugas Loket',
+                            'verlap'        => 'Petugas Verifikasi Lapangan',
+                            'kabid'         => 'Kepala Bidang',
+                            'penetapan'     => 'Petugas Penetapan',
+                            'op_baru'       => 'Petugas OP Baru',
+                            'mutasi1'       => 'Petugas Mutasi Bagian',
+                            'mutasi2'       => 'Petugas Mutasi Nama & Pembetulan'
+                        ];
+                        $display_name = isset($role_labels[$_SESSION['username']])
+                            ? $role_labels[$_SESSION['username']]
+                            : htmlspecialchars($_SESSION['username']);
+                        ?>
+                        <span class="user-name"><?php echo $display_name; ?></span>
                     </div>
                     <a href="#" class="logout-button" onclick="handleLogout(event)">
                         Keluar (Logout)
