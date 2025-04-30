@@ -61,73 +61,68 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOGIN</title>
+    <title>LOGIN - Bapenda Kota Kendari</title>
     <link rel="stylesheet" href="css/login.css">
 </head>
-
 <body>
     <div class="background"></div>
     <div class="overlay"></div>
+    
     <div class="login-container" id="loginContainer">
-        <h2>LOGIN</h2>
-        <div class="error" style="color:red; margin-bottom:10px; display:none;"></div>
-        <form action="login.php" method="POST">
-            <label>Username</label>
-            <input type="text" name="username" required placeholder="Masukkan username">
-            <label>Password</label>
-            <input type="password" name="password" required placeholder="Masukkan password">
-            <button type="submit">Login</button>
+        <div class="login-header">
+            <img src="gambar/Lambang_Kota_Kendari.png" alt="Logo" class="login-logo">
+            <h2>Selamat Datang</h2>
+            <p class="login-subtitle">Silahkan login untuk melanjutkan</p>
+        </div>
+
+        <div class="error-message" id="errorMessage"></div>
+
+        <form id="loginForm" action="login.php" method="POST">
+            <div class="input-group">
+                <span class="icon-user">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </span>
+                <input type="text" 
+                       id="username" 
+                       name="username" 
+                       required 
+                       placeholder="Username"
+                       autocomplete="off">
+            </div>
+
+            <div class="input-group">
+                <span class="icon-lock">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                </span>
+                <input type="password" 
+                       id="password" 
+                       name="password" 
+                       required 
+                       placeholder="Password">
+                <button type="button" class="toggle-password" id="togglePassword">
+                    <svg class="icon-eye" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                </button>
+            </div>
+
+            <button type="submit" class="login-button">
+                <span class="button-text">Login</span>
+                <span class="button-loader"></span>
+            </button>
         </form>
     </div>
-    <script>
-        window.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                document.getElementById('loginContainer').classList.add('show');
-            }, 80);
-        });
 
-        document.querySelector('form').addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            const formData = new FormData(this);
-
-            fetch('login.php', {
-                method: 'POST',
-                body: formData
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        alert(data.message);
-                        window.location.href = data.redirect;
-                    } else {
-                        const errorDiv = document.querySelector('.error');
-                        errorDiv.textContent = data.message;
-                        errorDiv.style.display = 'block';
-                    }
-                });
-        });
-
-        window.onload = function () {
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.get('logout') === 'success') {
-                const username = urlParams.get('username');
-                alert('Akun ' + username + ' telah berhasil logout.');
-                window.history.replaceState({}, document.title, window.location.pathname);
-            }
-        }
-
-        function handleLogout(e) {
-            e.preventDefault();
-            if (confirm('Apakah Anda yakin ingin logout?')) {
-                window.location.href = 'logout.php?confirm=yes';
-            }
-        }
-    </script>
+    <script src="javascript/login.js"></script>
 </body>
-
 </html>
