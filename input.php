@@ -160,12 +160,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                    required
                    placeholder="Masukkan alamat lengkap objek pajak">
 
-            <label>Tipe Berkas</label>
+            <label class="form-label">Tipe Berkas</label>
             <div class="checkbox-group">
-                <label><input type="checkbox" name="tipe_berkas[]" value="BPHTB"> BPHTB </label>
-                <label><input type="checkbox" name="tipe_berkas[]" value="Mutasi Nama & Pembetulan"> Mutasi Nama & Pembetulan </label>
-                <label><input type="checkbox" name="tipe_berkas[]" value="Objek Pajak Baru"> Objek Pajak Baru </label>
-                <label><input type="checkbox" name="tipe_berkas[]" value="Mutasi Bagian"> Mutasi Bagian </label>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="bphtb" name="tipe_berkas[]" value="BPHTB">
+                    <label for="bphtb">BPHTB</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="mutasi_nama" name="tipe_berkas[]" value="Mutasi Nama & Pembetulan">
+                    <label for="mutasi_nama">Mutasi Nama & Pembetulan</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="op_baru" name="tipe_berkas[]" value="Objek Pajak Baru">
+                    <label for="op_baru">Objek Pajak Baru</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="mutasi_bagian" name="tipe_berkas[]" value="Mutasi Bagian">
+                    <label for="mutasi_bagian">Mutasi Bagian</label>
+                </div>
             </div>
 
             <label for="tanggal_masuk" style="margin-top:10px;">Tanggal Masuk Berkas</label>
