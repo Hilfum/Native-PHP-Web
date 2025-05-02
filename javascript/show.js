@@ -9,6 +9,24 @@ function handleLogout(e) {
 // Confirm
 function handleConfirm(e, form) {
     e.preventDefault();
+    
+    const tableArea = document.getElementById('tableArea');
+    const btnConfirm = form.querySelector('.btn-confirm');
+    const originalText = btnConfirm.textContent;
+    
+    // Tambah loading state ke button
+    btnConfirm.textContent = 'Processing...';
+    btnConfirm.disabled = true;
+    
+    // Animasi slide up (hilang ke atas)
+    tableArea.style.opacity = '0';
+    tableArea.style.transform = 'translateY(-30px)';
+
+    // Ambil parameter URL saat ini
+    const params = new URLSearchParams(window.location.search);
+    const currentPage = params.get('page') || 1;
+    const entries = params.get('entries') || 10;
+    
     fetch(form.action, {
         method: 'POST',
         body: new FormData(form)
@@ -16,11 +34,48 @@ function handleConfirm(e, form) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            window.location.reload();
+            // Update tabel dengan data terbaru
+            fetch(`show_data.php?page=${currentPage}&entries=${entries}`)
+                .then(res => res.text())
+                .then(html => {
+                    setTimeout(() => {
+                        tableArea.innerHTML = html;
+                        
+                        // Reset dan animasi slide down (muncul dari atas)
+                        tableArea.style.transition = 'none';
+                        tableArea.style.opacity = '0';
+                        tableArea.style.transform = 'translateY(-30px)';
+                        
+                        // Force reflow
+                        void tableArea.offsetWidth;
+                        
+                        // Aktifkan animasi
+                        tableArea.style.transition = 'opacity 0.3s, transform 0.3s';
+                        tableArea.style.opacity = '1';
+                        tableArea.style.transform = 'translateY(0)';
+                        
+                        // Reset button state
+                        btnConfirm.textContent = originalText;
+                        btnConfirm.disabled = false;
+                    }, 200);
+                });
         } else {
             alert(data.message || 'Gagal konfirmasi');
+            btnConfirm.textContent = originalText;
+            btnConfirm.disabled = false;
+            tableArea.style.opacity = '1';
+            tableArea.style.transform = 'translateY(0)';
         }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Terjadi kesalahan saat memproses konfirmasi');
+        btnConfirm.textContent = originalText;
+        btnConfirm.disabled = false;
+        tableArea.style.opacity = '1';
+        tableArea.style.transform = 'translateY(0)';
     });
+
     return false;
 }
 

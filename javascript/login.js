@@ -22,30 +22,26 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
         
         const submitButton = this.querySelector('button[type="submit"]');
+        const buttonText = submitButton.querySelector('.button-text');
         submitButton.classList.add('loading');
         
-        const formData = new FormData(this);
-
         try {
             const response = await fetch('login.php', {
                 method: 'POST',
-                body: formData
+                body: new FormData(this)
             });
             
             const data = await response.json();
             
             if (data.success) {
-                // Success animation sequence
                 submitButton.classList.add('success');
-                submitButton.querySelector('.button-text').textContent = 'Berhasil!';
+                buttonText.textContent = 'Berhasil!';
                 
-                // Animate container
                 setTimeout(() => {
                     document.body.classList.add('fade-out');
                     loginContainer.classList.add('slide-out');
                 }, 600);
 
-                // Background blur increase
                 document.querySelector('.background').style.filter = 'blur(20px)';
                 
                 setTimeout(() => {
@@ -59,15 +55,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 setTimeout(() => {
                     loginContainer.classList.remove('shake');
                 }, 650);
+                
+                // Reset button state
+                submitButton.classList.remove('loading');
+                buttonText.textContent = 'Login';
             }
         } catch (error) {
             console.error('Error:', error);
             errorMessage.textContent = 'Terjadi kesalahan. Silakan coba lagi.';
             errorMessage.classList.add('show');
-        } finally {
-            if (!data?.success) {
-                submitButton.classList.remove('loading');
-            }
+            
+            // Reset button state
+            submitButton.classList.remove('loading');
+            buttonText.textContent = 'Login';
         }
     });
 
