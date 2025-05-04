@@ -160,6 +160,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                    required
                    placeholder="Masukkan alamat lengkap objek pajak">
 
+            <label for="tanggal_masuk" style="margin-top:10px;">Tanggal Masuk Berkas</label>
+            <div class="input-date-group">
+                <span class="calendar-icon">&#128197;</span>
+                <input type="date" id="tanggal_masuk" name="tanggal_masuk" required
+                       value="<?php echo date('Y-m-d'); ?>">
+            </div>
+
             <label class="form-label">Tipe Berkas</label>
             <div class="checkbox-group">
                 <div class="checkbox-item">
@@ -178,13 +185,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="checkbox" id="mutasi_bagian" name="tipe_berkas[]" value="Mutasi Bagian">
                     <label for="mutasi_bagian">Mutasi Bagian</label>
                 </div>
-            </div>
-
-            <label for="tanggal_masuk" style="margin-top:10px;">Tanggal Masuk Berkas</label>
-            <div class="input-date-group">
-                <span class="calendar-icon">&#128197;</span>
-                <input type="date" id="tanggal_masuk" name="tanggal_masuk" required
-                       value="<?php echo date('Y-m-d'); ?>">
             </div>
 
             <div class="button-group">

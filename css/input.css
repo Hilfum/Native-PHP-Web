@@ -125,20 +125,29 @@ body.input-body::-webkit-scrollbar, html::-webkit-scrollbar {
     transform: translateY(-2px);
 }
 
+/* Checkbox Styling */
 .checkbox-group {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-    margin: 15px 0;
-    padding: 10px;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.5);
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    padding: 16px;
+    background: #f1f5f9;
+    border-radius: 16px;
+    margin: 10px 0;
 }
 
 .checkbox-item {
+    background: white;
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: all 0.3s;
     position: relative;
-    display: flex;
-    align-items: center;
+}
+
+.checkbox-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .checkbox-item input[type="checkbox"] {
@@ -159,6 +168,8 @@ body.input-body::-webkit-scrollbar, html::-webkit-scrollbar {
     color: #2c3e50;
     font-weight: 500;
     transition: all 0.2s ease;
+    margin: 0;
+    position: relative;
 }
 
 .checkbox-item label:before {
@@ -188,7 +199,6 @@ body.input-body::-webkit-scrollbar, html::-webkit-scrollbar {
     transition: all 0.2s ease;
 }
 
-/* Checked State */
 .checkbox-item input[type="checkbox"]:checked + label:before {
     background: #007bff;
     border-color: #007bff;
@@ -198,41 +208,35 @@ body.input-body::-webkit-scrollbar, html::-webkit-scrollbar {
     transform: translateY(-50%) rotate(45deg) scale(1);
 }
 
-/* Hover Effects */
 .checkbox-item label:hover:before {
     border-color: #007bff;
     box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
 }
 
-/* Focus State */
 .checkbox-item input[type="checkbox"]:focus + label:before {
     box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
 }
 
-/* Animation for checking */
+/* Remove old animations and add this one */
 @keyframes checkmark {
-    0% {
-        transform: translateY(-50%) rotate(45deg) scale(0);
-    }
-    100% {
-        transform: translateY(-50%) rotate(45deg) scale(1);
-    }
+    0% { transform: translateY(-50%) rotate(45deg) scale(0); }
+    100% { transform: translateY(-50%) rotate(45deg) scale(1); }
 }
 
 .checkbox-item input[type="checkbox"]:checked + label:after {
     animation: checkmark 0.2s ease-in-out forwards;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .checkbox-group {
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-    
-    .checkbox-item label {
-        font-size: 14px;
-    }
+/* Error state */
+.checkbox-group.error {
+    animation: shakeError 0.4s ease-in-out;
+    border: 1px solid #ff4d4f;
+}
+
+@keyframes shakeError {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
 }
 
 .button-group {
