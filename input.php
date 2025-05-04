@@ -167,7 +167,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                        value="<?php echo date('Y-m-d'); ?>">
             </div>
 
-            <label class="form-label">Tipe Berkas</label>
+            <label class="form-label"></label>
             <div class="checkbox-group">
                 <div class="checkbox-item">
                     <input type="checkbox" id="bphtb" name="tipe_berkas[]" value="BPHTB">
