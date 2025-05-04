@@ -57,6 +57,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!$row) {
         die("Data not found.");
     }
+
+    // Initialize $tipe_berkas array from the database value
+    $tipe_berkas = !empty($row['tipe_berkas']) ? explode(", ", $row['tipe_berkas']) : [];
 }
 ?>
 
@@ -125,19 +128,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                    required
                    placeholder="Masukkan alamat lengkap objek pajak">
 
-            <label>Tipe Berkas</label>
+            <label class="form-label">Tipe Berkas</label>
             <div class="checkbox-group">
-                <?php
-                $tipe_berkas = explode(", ", $row['tipe_berkas']);
-                $checked1 = in_array("BPHTB", $tipe_berkas) ? "checked" : "";
-                $checked2 = in_array("Mutasi Nama & Pembetulan", $tipe_berkas) ? "checked" : "";
-                $checked3 = in_array("Objek Pajak Baru", $tipe_berkas) ? "checked" : "";
-                $checked4 = in_array("Mutasi Bagian", $tipe_berkas) ? "checked" : "";
-                ?>
-                <label><input type="checkbox" name="tipe_berkas[]" value="BPHTB" <?php echo $checked1; ?>> BPHTB</label>
-                <label><input type="checkbox" name="tipe_berkas[]" value="Mutasi Nama & Pembetulan" <?php echo $checked2; ?>> Mutasi Nama & Pembetulan</label>
-                <label><input type="checkbox" name="tipe_berkas[]" value="Objek Pajak Baru" <?php echo $checked3; ?>> Objek Pajak Baru</label>
-                <label><input type="checkbox" name="tipe_berkas[]" value="Mutasi Bagian" <?php echo $checked4; ?>> Mutasi Bagian</label>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="bphtb" name="tipe_berkas[]" value="BPHTB" 
+                           <?php echo in_array("BPHTB", $tipe_berkas) ? "checked" : ""; ?>>
+                    <label for="bphtb">BPHTB</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="mutasi_nama" name="tipe_berkas[]" value="Mutasi Nama & Pembetulan" 
+                           <?php echo in_array("Mutasi Nama & Pembetulan", $tipe_berkas) ? "checked" : ""; ?>>
+                    <label for="mutasi_nama">Mutasi Nama & Pembetulan</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="op_baru" name="tipe_berkas[]" value="Objek Pajak Baru" 
+                           <?php echo in_array("Objek Pajak Baru", $tipe_berkas) ? "checked" : ""; ?>>
+                    <label for="op_baru">Objek Pajak Baru</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="mutasi_bagian" name="tipe_berkas[]" value="Mutasi Bagian" 
+                           <?php echo in_array("Mutasi Bagian", $tipe_berkas) ? "checked" : ""; ?>>
+                    <label for="mutasi_bagian">Mutasi Bagian</label>
+                </div>
             </div>
 
             <label for="tanggal_masuk" style="margin-top:10px;">Tanggal Masuk Berkas</label>
