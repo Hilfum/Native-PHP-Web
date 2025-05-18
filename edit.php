@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Edit Data Berkas</title>
     <link rel="stylesheet" href="css/edit.css">
 </head>
-<body class="input-body">
+<body class="input-body page-fade-in">
     <div class="header">
         <div class="logo-container">
             <img src="gambar/Lambang_Kota_Kendari.png" alt="Logo Kota Kendari">

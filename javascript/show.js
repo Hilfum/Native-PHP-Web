@@ -230,4 +230,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
         });
     }
+
+    // Tambahkan event listener untuk tombol edit
+    document.querySelectorAll('.btn-edit').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const href = this.getAttribute('href');
+            
+            // Tambahkan class untuk animasi fade out
+            document.body.classList.add('page-fade-out');
+            
+            // Tunggu animasi selesai baru pindah halaman
+            setTimeout(() => {
+                window.location.href = href;
+            }, 600); // 600ms sesuai dengan durasi animasi CSS
+        });
+    });
 });

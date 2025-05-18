@@ -408,12 +408,16 @@ button[type="submit"]:hover {
 
 /* Animasi keluar dan masuk halaman, samakan dengan show.css & input.css */
 .page-fade-in {
-    animation: fadeInSlideDown 0.6s cubic-bezier(.4,0,.2,1);
+    animation: slideInDown 0.6s cubic-bezier(.4,0,.2,1);
+    opacity: 0;
+    animation-fill-mode: forwards;
 }
+
 .page-fade-out {
-    animation: fadeOutSlideUp 0.6s forwards;
+    animation: slideOutUp 0.6s cubic-bezier(.4,0,.2,1);
 }
-@keyframes fadeInSlideDown {
+
+@keyframes slideInDown {
     from {
         opacity: 0;
         transform: translateY(-32px);
@@ -423,7 +427,12 @@ button[type="submit"]:hover {
         transform: translateY(0);
     }
 }
-@keyframes fadeOutSlideUp {
+
+@keyframes slideOutUp {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
     to {
         opacity: 0;
         transform: translateY(-32px);
